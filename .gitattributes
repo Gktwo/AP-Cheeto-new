@@ -1,0 +1,4 @@
+*.h filter=lfs diff=lfs merge=lfs -text
+
+*.h !text !filter !merge !diff
+appdata/il2cpp-types.h filter=lfs diff=lfs merge=lfs -text
