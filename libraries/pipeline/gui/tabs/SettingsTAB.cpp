@@ -1,4 +1,4 @@
-﻿#include "pch-il2cpp.h"
+#include "pch-il2cpp.h"
 #include "pipeline/gui/tabs/SettingsTAB.h"
 #include "pipeline/gui/GUITheme.h" 
 #include "pipeline/settings.h"
