@@ -1,6 +1,5 @@
 ﻿#include "pch-il2cpp.h"
 #include "pipeline/gui/tabs/SettingsTAB.h"
-//#include <imgui/imgui.h>
 #include "pipeline/gui/GUITheme.h" 
 #include "pipeline/settings.h"
 #include "main.h"
@@ -39,17 +38,6 @@ bool SettingsTAB::show_type = false;
 void SettingsTAB::Render()
 {
 	if (ImGui::BeginTabItem("Settings")) {
-
-		ImGui::Spacing();
-
-		ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "Version: 0.0.9");
-		ImGui::Spacing();
-
-		ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + 550.0f);
-		ImGui::PopTextWrapPos();
-		ImGui::Spacing();
-		ImGui::Separator();
-		ImGui::Spacing();
 
 
 		ImGui::Spacing();

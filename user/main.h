@@ -2,6 +2,7 @@
 // DLL entry point
 
 #pragma once
+#include <windows.h>
 
 extern HMODULE hModule;
 extern HANDLE hUnloadEvent;

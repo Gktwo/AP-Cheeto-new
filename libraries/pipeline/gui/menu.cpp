@@ -3,7 +3,11 @@
 #include "imgui/imgui.h"
 
 #include "pipeline/settings.h"
+#include "pipeline/gui/tabs/AboutTAB.h"
 #include "pipeline/gui/tabs/SettingsTAB.h"
+#include "pipeline/gui/tabs/PlayTAB.h"
+//#include "pipeline/gui/tabs/WorldTAB.h"
+//#include "pipeline/gui/tabs/VisualTAB.h"
 
 namespace Menu {
 	bool init = false;
@@ -26,7 +30,12 @@ namespace Menu {
 			firstRender = false;
 		}
 		else {
+			AboutTAB::Render();
+			PlayTAB::Render();
 			SettingsTAB::Render();
+			
+			//WorldTAB::Render();
+			//VisualTAB::Render();
 		}
 
 		ImGui::EndTabBar();

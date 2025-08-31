@@ -70,6 +70,9 @@
     <ClCompile Include="libraries\pipeline\gui\tabs\SettingsTAB.cpp">
       <Filter>libraries\pipeline\gui\tabs</Filter>
     </ClCompile>
+    <ClCompile Include="libraries\pipeline\gui\tabs\PlayTAB.cpp">
+      <Filter>libraries\pipeline\gui\tabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">
@@ -160,6 +163,9 @@
       <Filter>libraries\pipeline\gui\tabs</Filter>
     </ClInclude>
     <ClInclude Include="libraries\pipeline\HYWenHei.hpp" />
+    <ClInclude Include="libraries\pipeline\gui\tabs\PlayTAB.h">
+      <Filter>libraries\pipeline\gui\tabs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="appdata">

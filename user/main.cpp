@@ -14,6 +14,7 @@
 #include <pipeline/hooks/InitHooks.h>
 
 
+
 using namespace app;
 
 // Set the name of your log file here
@@ -77,6 +78,12 @@ void Run(LPVOID lpParam)
  }
 
  DetourInitilization();
+
+ // 初始化功能页面的动态Hook
+// std::cout << "[INFO] Initializing feature hooks..." << std::endl;
+ //PlayTAB::InitializePlayHooks();
+ //WorldTAB::InitializeWorldHooks();
+// std::cout << "[INFO] Feature hooks initialized successfully." << std::endl;
 
  hUnloadEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
  if (hUnloadEvent == NULL) {
