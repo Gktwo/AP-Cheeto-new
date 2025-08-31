@@ -1,7 +1,6 @@
 #ifndef PCH_IL2CPP_H
 #define PCH_IL2CPP_H
 
-
 #include "il2cpp-appdata.h"
 #include "../framework/helpers.h"
 #include "../libraries/imgui/imgui.h"
