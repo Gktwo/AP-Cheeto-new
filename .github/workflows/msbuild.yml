@@ -2,9 +2,9 @@ name: Build DLL
 
 on:
   push:
-    branches: [ main ]
+    branches: [ build ]
   pull_request:
-    branches: [ main ]
+    branches: [ build ]
 
 jobs:
   build:
@@ -12,35 +12,22 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4   # 最新版 checkout
-        with:
-          lfs: true
-
-      - name: Checkout LFS objects
         uses: actions/checkout@v4
-        with:
-          lfs: true
           
-      - name: Verify and handle LFS files
+      - name: Download LFS file directly
         run: |
-          echo "Checking il2cpp-types.h file size..."
+          echo "Downloading il2cpp-types.h from correct repository..."
+          $lfsUrl = "https://github.com/Gktwo/AP-Cheeto-new/raw/main/appdata/il2cpp-types.h"
+          echo "Downloading from: $lfsUrl"
+          curl -L -o appdata\il2cpp-types.h "$lfsUrl"
+          
           $fileSize = (Get-Item appdata\il2cpp-types.h).Length
-          echo "File size: $fileSize bytes"
+          echo "Downloaded file size: $fileSize bytes"
           if ($fileSize -lt 1000000) {
-            echo "WARNING: il2cpp-types.h appears to be an LFS pointer file!"
-            echo "Attempting to resolve LFS issue..."
-            git lfs install
-            git lfs fetch --all
-            git lfs checkout
-            $newFileSize = (Get-Item appdata\il2cpp-types.h).Length
-            echo "New file size: $newFileSize bytes"
-            if ($newFileSize -lt 1000000) {
-              echo "ERROR: Failed to resolve LFS file issue!"
-              Get-Content appdata\il2cpp-types.h -Head 5
-              exit 1
-            }
+            echo "ERROR: Downloaded file is too small!"
+            exit 1
           }
-          echo "LFS file verification passed."
+          echo "File download successful."
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1.3.1
