@@ -1,0 +1,31 @@
+name: Build DLL
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      # 拉取代码
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # 设置 MSBuild (Visual Studio)
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1.3.1
+
+      # 编译 sln
+      - name: Build solution
+        run: msbuild il2cpp-dll.sln /p:Configuration=Release /p:Platform=x64
+
+      # 上传生成的 DLL
+      - name: Upload version.dll
+        uses: actions/upload-artifact@v3
+        with:
+          name: version-dll
+          path: ./x64/Release/version.dll
