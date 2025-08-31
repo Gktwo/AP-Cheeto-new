@@ -3,4 +3,5 @@
 
 namespace SettingsTAB {
 	void Render();
+	void FPSRander();
 }

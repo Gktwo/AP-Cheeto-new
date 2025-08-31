@@ -167,6 +167,9 @@ HRESULT __stdcall dPresent(IDXGISwapChain* __this, UINT SyncInterval, UINT Flags
 	if (ESPTAB::esp_enabled) {
 		ESPTAB::drawESP();
 	}
+	
+	// FPS独立绘制，不受GUI开关影响
+	SettingsTAB::FPSRander();
 
 	ImGui::EndFrame();
 	ImGui::Render();

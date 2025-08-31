@@ -1,7 +1,5 @@
 #include "pch-il2cpp.h"
 #include "VisualTAB.h"
-#include <imgui/imgui.h>
-#include "pipeline/HookManager.h"
 #include <iostream>
 
 void VisualTAB::Render() {

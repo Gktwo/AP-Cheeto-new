@@ -7,8 +7,10 @@
 #include "pipeline/gui/tabs/SettingsTAB.h"
 #include "pipeline/gui/tabs/PlayTAB.h"
 #include "pipeline/gui/tabs/ESPTAB.h"
-//#include "pipeline/gui/tabs/WorldTAB.h"
-//#include "pipeline/gui/tabs/VisualTAB.h"
+#include "pipeline/gui/tabs/WorldTAB.h"
+#include "pipeline/gui/tabs/VisualTAB.h"
+
+
 
 namespace Menu {
 	bool init = false;
@@ -34,13 +36,14 @@ namespace Menu {
 			AboutTAB::Render();
 			PlayTAB::Render();
 			ESPTAB::Render();
+			WorldTAB::Render();
+			VisualTAB::Render();
 			SettingsTAB::Render();
-			
-			//WorldTAB::Render();
-			//VisualTAB::Render();
 		}
 
 		ImGui::EndTabBar();
 		ImGui::End();
+
+
 	}
 }

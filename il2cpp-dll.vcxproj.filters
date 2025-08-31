@@ -76,6 +76,10 @@
     <ClCompile Include="libraries\pipeline\gui\tabs\PlayTAB.cpp">
       <Filter>libraries\pipeline\gui\tabs</Filter>
     </ClCompile>
+    <ClCompile Include="libraries\pipeline\gui\tabs\AboutTAB.cpp" />
+    <ClCompile Include="libraries\pipeline\HookManager.cpp" />
+    <ClCompile Include="libraries\pipeline\gui\tabs\VisualTAB.cpp" />
+    <ClCompile Include="libraries\pipeline\gui\tabs\WorldTAB.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">
@@ -169,6 +173,11 @@
     <ClInclude Include="libraries\pipeline\gui\tabs\PlayTAB.h">
       <Filter>libraries\pipeline\gui\tabs</Filter>
     </ClInclude>
+    <ClInclude Include="libraries\pipeline\gui\tabs\AboutTAB.h" />
+    <ClInclude Include="libraries\pipeline\gui\tabs\ESPTAB.h" />
+    <ClInclude Include="libraries\pipeline\HookManager.h" />
+    <ClInclude Include="libraries\pipeline\gui\tabs\VisualTAB.h" />
+    <ClInclude Include="libraries\pipeline\gui\tabs\WorldTAB.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="appdata">

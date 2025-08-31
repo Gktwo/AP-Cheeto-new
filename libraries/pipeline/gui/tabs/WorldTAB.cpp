@@ -13,8 +13,7 @@ void WorldTAB::Render() {
         ImGui::Spacing();
         
         // 空的UI界面
-        ImGui::Text("World功能开发中...");
-        ImGui::Text("这里将包含世界信息、实体列表、传送等功能");
+        
         
         ImGui::EndTabItem();
     }

@@ -60,3 +60,8 @@ DO_APP_FUNC(0x062A4F20, int32_t, Screen_get_height, (MethodInfo* method));
 DO_APP_FUNC(0x0625FF70, Camera*, Camera_get_main, (MethodInfo* method));
 DO_APP_FUNC(0x0625F230, Vector3, Camera_WorldToScreenPoint_1, (Camera* __this, Vector3 position, MethodInfo* method));
 DO_APP_FUNC(0x062C34D0, float, Vector3_Distance, (Vector3 a, Vector3 b, MethodInfo* method));
+
+
+
+DO_APP_FUNC(0x062F32F0, float, Time_1_get_timeScale, (MethodInfo* method));
+DO_APP_FUNC(0x062F35A0, void, Time_1_set_timeScale, (float value, MethodInfo* method));
