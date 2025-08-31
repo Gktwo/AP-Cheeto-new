@@ -13,6 +13,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4   # 最新版 checkout
+        with:
+          lfs: true
+
+      - name: Checkout LFS objects
+        run: git lfs checkout
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1.3.1
