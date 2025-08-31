@@ -6,6 +6,7 @@
 #include "pipeline/gui/tabs/AboutTAB.h"
 #include "pipeline/gui/tabs/SettingsTAB.h"
 #include "pipeline/gui/tabs/PlayTAB.h"
+#include "pipeline/gui/tabs/ESPTAB.h"
 //#include "pipeline/gui/tabs/WorldTAB.h"
 //#include "pipeline/gui/tabs/VisualTAB.h"
 
@@ -32,6 +33,7 @@ namespace Menu {
 		else {
 			AboutTAB::Render();
 			PlayTAB::Render();
+			ESPTAB::Render();
 			SettingsTAB::Render();
 			
 			//WorldTAB::Render();

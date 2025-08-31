@@ -16,6 +16,7 @@
 #include <pipeline/gui/GUITheme.h>
 #include "pipeline/HYWenHei.hpp"
 #include "pipeline/gui/tabs/SettingsTAB.h"
+#include "pipeline/gui/tabs/ESPTAB.h"
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -163,8 +164,8 @@ HRESULT __stdcall dPresent(IDXGISwapChain* __this, UINT SyncInterval, UINT Flags
 	}
 
 	// ESP独立绘制，不受GUI开关影响
-	if (SettingsTAB::esp_enabled) {
-		SettingsTAB::drawESP();
+	if (ESPTAB::esp_enabled) {
+		ESPTAB::drawESP();
 	}
 
 	ImGui::EndFrame();

@@ -116,6 +116,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="libraries\pipeline\gui\tabs\ESPTAB.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="libraries\pipeline\hooks\DirectX.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -163,6 +169,7 @@
     <ClInclude Include="framework\pch-il2cpp.h" />
     <ClInclude Include="framework\version.h" />
     <ClInclude Include="libraries\pipeline\gui\tabs\AboutTAB.h" />
+    <ClInclude Include="libraries\pipeline\gui\tabs\ESPTAB.h" />
     <ClInclude Include="libraries\pipeline\gui\tabs\PlayTAB.h" />
     <ClInclude Include="libraries\pipeline\HYWenHei.hpp" />
     <ClInclude Include="user\main.h" />

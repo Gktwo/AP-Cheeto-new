@@ -4,8 +4,4 @@
 
 namespace AboutTAB {
     void Render();
-
-    // Speed hack functionality
-    //extern bool speed_hack_enabled;
-
 }

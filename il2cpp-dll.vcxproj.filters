@@ -70,6 +70,9 @@
     <ClCompile Include="libraries\pipeline\gui\tabs\SettingsTAB.cpp">
       <Filter>libraries\pipeline\gui\tabs</Filter>
     </ClCompile>
+    <ClCompile Include="libraries\pipeline\gui\tabs\ESPTAB.cpp">
+      <Filter>libraries\pipeline\gui\tabs</Filter>
+    </ClCompile>
     <ClCompile Include="libraries\pipeline\gui\tabs\PlayTAB.cpp">
       <Filter>libraries\pipeline\gui\tabs</Filter>
     </ClCompile>
