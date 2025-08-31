@@ -30,10 +30,5 @@ namespace ESPTAB {
 	std::string addtext(std::string& text, std::string newtext);
 	EntityDisplayInfo getEntityDisplayInfo(app::EEntityType__Enum type);
 	
-	// Color definitions
-	extern ImColor red;
-	extern ImColor blue;
-	extern ImColor green;
-	extern ImColor orange;
-	extern ImColor white;
+
 }

@@ -6,16 +6,16 @@
 #include <iostream>
 
 // Color definitions
-ImColor red = ImColor(255, 0, 0);      // ºì
-ImColor orange = ImColor(255, 165, 0);    // ³È
-ImColor yellow = ImColor(255, 255, 0);     // »Æ
-ImColor green = ImColor(0, 255, 0);    // ÂÌ
-ImColor blue = ImColor(0, 0, 255);      // À¶
-ImColor qing = ImColor(0, 255, 255);     // qing
-ImColor purple = ImColor(148, 0, 211);     // ×Ï
-ImColor white = ImColor(255, 255, 255);    // bai
-ImColor deeppink = ImColor(255, 20, 147); //Éî·ÛÉ«
-ImColor pink = ImColor(255, 192, 203);//·ÛÉ«se
+ImColor red = ImColor(255, 0, 0);  
+ImColor orange = ImColor(255, 165, 0);  
+ImColor yellow = ImColor(255, 255, 0); 
+ImColor green = ImColor(0, 255, 0);   
+ImColor blue = ImColor(0, 0, 255);    
+ImColor qing = ImColor(0, 255, 255);  
+ImColor purple = ImColor(148, 0, 211);   
+ImColor white = ImColor(255, 255, 255); 
+ImColor deeppink = ImColor(255, 20, 147); 
+ImColor pink = ImColor(255, 192, 203);
 ImColor black = ImColor(0, 0, 0);
 ImColor gray = ImColor(128, 128, 128);
 

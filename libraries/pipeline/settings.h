@@ -10,7 +10,7 @@ public:
 	};
 
 	bool ImGuiInitialized = false;
-	bool bShowMenu = false;
+	bool bShowMenu = true;
 	
 	
 private:

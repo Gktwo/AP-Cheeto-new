@@ -24,8 +24,8 @@ namespace Menu {
 		if (!init)
 			Menu::Init();
 
-		ImGui::Begin("AP - Cheeto", &settings.bShowMenu, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
-		ImGui::BeginTabBar("TestGame#TopBar", ImGuiTabBarFlags_NoTabListScrollingButtons);
+		ImGui::Begin("AP - Cheeto           Press F12 to show panel", &settings.bShowMenu, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+		ImGui::BeginTabBar("#TopBar", ImGuiTabBarFlags_NoTabListScrollingButtons);
 
 		if (firstRender) {
 			firstRender = false;
