@@ -5,7 +5,7 @@
 namespace AboutTAB {
     void Render();
 
-    // Play相关功能开关
+    // Speed hack functionality
     //extern bool speed_hack_enabled;
 
 }

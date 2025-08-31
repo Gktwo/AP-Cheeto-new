@@ -34,15 +34,7 @@ static void TextURL(
 		ImGui::PopStyleColor();
 	if (hovered && ImGui::IsItemClicked())
 	{
-#ifdef _WIN32
 		ShellExecuteA(NULL, "open", url, NULL, NULL, SW_SHOWNORMAL);
-#elif __APPLE__
-		std::string command = "open " + std::string(url);
-		system(command.c_str());
-#else
-		std::string command = "xdg-open " + std::string(url);
-		system(command.c_str());
-#endif
 	}
 }
 
