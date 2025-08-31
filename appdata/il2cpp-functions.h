@@ -32,6 +32,8 @@ DO_APP_FUNC(0x021B88D0, String *, BaseData_get_configName, (BaseData * __this, M
 DO_APP_FUNC_METHODINFO(0x08374260, BaseData_get_configName__MethodInfo); 
 DO_APP_FUNC(0x021B8F40, EEntityType__Enum, BaseData_get_entityType, (BaseData* __this, MethodInfo* method));
 DO_APP_FUNC_METHODINFO(0x083762A8, BaseData_get_entityType__MethodInfo);
+DO_APP_FUNC(0x021B8EF0, int32_t, BaseData_get_entityId, (BaseData* __this, MethodInfo* method));
+DO_APP_FUNC_METHODINFO(0x08376030, BaseData_get_entityId__MethodInfo);
 
 DO_APP_FUNC(0x021B3F40, Vector3, BaseData_GetPosition, (BaseData* __this, MethodInfo* method));
 DO_APP_FUNC_METHODINFO(0x08368A88, BaseData_GetPosition__MethodInfo);
