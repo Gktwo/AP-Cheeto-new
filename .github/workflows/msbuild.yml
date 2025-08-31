@@ -1,0 +1,27 @@
+name: Build DLL
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4   # 最新版 checkout
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1.3.1
+
+      - name: Build solution
+        run: msbuild il2cpp-dll.sln /p:Configuration=Release /p:Platform=x64
+
+      - name: Upload version.dll
+        uses: actions/upload-artifact@v4
+        with:
+          name: version-dll
+          path: ./x64/Release/version.dll
