@@ -17,6 +17,7 @@
 #include "pipeline/HYWenHei.hpp"
 #include "pipeline/gui/tabs/SettingsTAB.h"
 #include "pipeline/gui/tabs/ESPTAB.h"
+#include "pipeline/modules/ModuleManager.h"
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -130,6 +131,9 @@ HRESULT __stdcall dPresent(IDXGISwapChain* __this, UINT SyncInterval, UINT Flags
 			std::cout << "[INFO]: ImGui Initialized successfully!\n";
 			std::cout << "[INFO]: Fullscreen: " << app::Screen_get_fullScreen(nullptr) << std::endl;
 			std::cout << "[INFO]: DirectX Window Size: " << +size.x << "x" << +size.y << std::endl;
+			
+			// Initialize module manager
+			MODULE_MANAGER.InitializeAll();
 		}
 		else {
 			ReleaseSemaphore(DirectX::hRenderSemaphore, 1, NULL);
@@ -158,18 +162,19 @@ HRESULT __stdcall dPresent(IDXGISwapChain* __this, UINT SyncInterval, UINT Flags
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
+	// Process hotkeys for all modules
+	MODULE_MANAGER.ProcessAllHotkeys();
+	
+	// Update all modules
+	MODULE_MANAGER.UpdateAll();
+	
 	if (settings.bShowMenu)
 	{
 		Menu::Render();
 	}
 
-	// ESP独立绘制，不受GUI开关影响
-	if (ESPTAB::esp_enabled) {
-		ESPTAB::drawESP();
-	}
-	
-	// FPS独立绘制，不受GUI开关影响
-	SettingsTAB::FPSRander();
+	// Render all module overlays (ESP, FPS, etc.)
+	MODULE_MANAGER.RenderAllOverlays();
 
 	ImGui::EndFrame();
 	ImGui::Render();
@@ -192,6 +197,10 @@ void DirectX::Shutdown() {
 	{
 		assert(WaitForSingleObject(hRenderSemaphore, INFINITE) == WAIT_OBJECT_0);
 	}
+	
+	// Shutdown module manager
+	MODULE_MANAGER.ShutdownAll();
+	
 	oWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)oWndProc);
 	ImGui_ImplDX11_Shutdown();
 	ImGui_ImplWin32_Shutdown();

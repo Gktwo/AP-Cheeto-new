@@ -3,5 +3,5 @@
 
 namespace SettingsTAB {
 	void Render();
-	void FPSRander();
+	// FPSRander function moved to FPSModule
 }
