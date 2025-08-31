@@ -2,9 +2,8 @@ name: Build DLL
 
 on:
   push:
-    branches: [ build ]
-  pull_request:
-    branches: [ build ]
+  pull_request
+
 
 jobs:
   build:
@@ -13,6 +12,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
           
       - name: Download LFS file directly
         run: |
