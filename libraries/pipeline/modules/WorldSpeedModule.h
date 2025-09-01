@@ -19,18 +19,18 @@ public:
     // BaseModule interface implementation
     void Initialize() override;
     void Shutdown() override;
-    void Update() override;
+    void OnUpdate() override;
     void RenderGUI() override;
     void RenderOverlay() override;
     void ProcessHotkeys() override;
     
-    void LoadConfig() override;
-    void SaveConfig() override;
+
+
+    // Module uses BaseModule's enabled variable directly
 
 private:
     WorldSpeedModule();  // Private constructor for singleton
     
-    bool world_speed_enabled;
     float world_speed_value;
     uint8_t toggle_key;
     

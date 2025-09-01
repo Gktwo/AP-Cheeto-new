@@ -4,7 +4,8 @@
 #include "imgui/imgui.h"
 #include <iostream>
 
-FPSModule::FPSModule() : BaseModule("FPS Monitor"), show_fps(true), toggle_key(VK_F5) {
+FPSModule::FPSModule() : BaseModule("FPS Monitor"), toggle_key(VK_F5) {
+    enabled = true;  // FPS module is enabled by default
 }
 
 void FPSModule::Initialize() {
@@ -17,33 +18,25 @@ void FPSModule::Shutdown() {
     std::cout << "[INFO] FPS Module shutdown" << std::endl;
 }
 
-void FPSModule::Update() {
+void FPSModule::OnUpdate() {
+    // Synchronization is now automatic
 }
 
 void FPSModule::RenderGUI() {
     if (ImGui::CollapsingHeader("FPS Monitor")) {
         ImGui::Indent();
-        if (ImGui::Checkbox("Show FPS Overlay", &show_fps)) {
-            SetEnabled(show_fps);
+        if (ImGui::Checkbox("Show FPS Overlay", &enabled)) {
+            // enabled state is directly managed by BaseModule
         }
         ImGui::Text("Toggle Key: %s", KeyBinds::ToString(toggle_key));
         ImGui::SameLine();
         if (ImGui::Button("Change##fps_key")) {
         }
-        float fps = ImGui::GetIO().Framerate;
-        float frame_time = 1000.0f / fps;
-        ImGui::Text("Current FPS: ");
-        ImGui::SameLine();
-        ImGui::TextColored(GetFPSColor(fps), "%.1f", fps);
-        ImGui::Text("Frame Time: ");
-        ImGui::SameLine();
-        ImGui::TextColored(GetFrameTimeColor(frame_time), "%.2f ms", frame_time);
-        ImGui::Unindent();
     }
 }
 
 void FPSModule::RenderOverlay() {
-    if (!enabled || !show_fps) return;
+    if (!enabled) return;
     float fps = ImGui::GetIO().Framerate;
     float frame_time = 1000.0f / fps;
     ImVec2 pos(10.0f, 10.0f);
@@ -64,16 +57,12 @@ void FPSModule::RenderOverlay() {
 
 void FPSModule::ProcessHotkeys() {
     if (KeyBinds::IsKeyPressed(toggle_key)) {
-        show_fps = !show_fps;
-        SetEnabled(show_fps);
+        enabled = !enabled;
+        // enabled state is directly managed by BaseModule
     }
 }
 
-void FPSModule::LoadConfig() {
-}
 
-void FPSModule::SaveConfig() {
-}
 
 ImVec4 FPSModule::GetFPSColor(float fps) const {
     if (fps >= 60.0f) {

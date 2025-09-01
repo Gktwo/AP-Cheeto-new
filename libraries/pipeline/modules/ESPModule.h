@@ -26,19 +26,18 @@ public:
     // BaseModule interface implementation
     void Initialize() override;
     void Shutdown() override;
-    void Update() override;
+    void OnUpdate() override;
     void RenderGUI() override;
     void RenderOverlay() override;
     void ProcessHotkeys() override;
     
-    void LoadConfig() override;
-    void SaveConfig() override;
+
+
+    // Module uses BaseModule's enabled variable directly
 
 private:
     ESPModule();  // Private constructor for singleton
     
-    // ESP control variables
-    bool esp_enabled;
     uint8_t toggle_key;
     
     // Display type control variables

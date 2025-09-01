@@ -5,7 +5,8 @@
 #include <iostream>
 
 
-ESPModule::ESPModule() : BaseModule("ESP"), esp_enabled(false), toggle_key(VK_F6) {
+ESPModule::ESPModule() : BaseModule("ESP"), toggle_key(VK_F6) {
+    // enabled is inherited from BaseModule and defaults to false
     red = ImColor(255, 0, 0);
     orange = ImColor(255, 165, 0);
     yellow = ImColor(255, 255, 0);
@@ -40,20 +41,18 @@ void ESPModule::Shutdown() {
     std::cout << "[INFO] ESP Module shutdown" << std::endl;
 }
 
-void ESPModule::Update() {
+void ESPModule::OnUpdate() {
 }
 
 void ESPModule::RenderGUI() {
     if (ImGui::CollapsingHeader("ESP Features")) {
         ImGui::Indent();
-        if (ImGui::Checkbox("ESP Enabled", &esp_enabled)) {
-            SetEnabled(esp_enabled);
-        }
+        ImGui::Checkbox("ESP Enabled", &enabled);
         ImGui::Text("Toggle Key: %s", KeyBinds::ToString(toggle_key));
         ImGui::SameLine();
         if (ImGui::Button("Change##esp_key")) {
         }
-        if (esp_enabled) {
+        if (enabled) {
             ImGui::Spacing();
             if (ImGui::TreeNode("Display Types")) {
                 ImGui::Checkbox("Show Monsters", &show_monster);
@@ -83,22 +82,17 @@ void ESPModule::RenderGUI() {
 }
 
 void ESPModule::RenderOverlay() {
-    if (!enabled || !esp_enabled) return;
+    if (!enabled) return;
     drawESP();
 }
 
 void ESPModule::ProcessHotkeys() {
     if (KeyBinds::IsKeyPressed(toggle_key)) {
-        esp_enabled = !esp_enabled;
-        SetEnabled(esp_enabled);
+        enabled = !enabled;
     }
 }
 
-void ESPModule::LoadConfig() {
-}
 
-void ESPModule::SaveConfig() {
-}
 
 void ESPModule::drawESP() {
     app::List_1_Lens_Gameplay_Modules_BigWorld_Entity_* entityList = app::EntityManager_GetAllEntities(nullptr);

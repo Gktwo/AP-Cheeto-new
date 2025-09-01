@@ -2,12 +2,13 @@
 #include "VisualTAB.h"
 #include <imgui/imgui.h>
 #include "../../modules/FPSModule.h"
+#include "../../modules/FreeCam.h"
 
 void VisualTAB::Render() {
     if (ImGui::BeginTabItem("Visual")) {
         // Call FPS module to render its GUI
         FPSModule::GetInstance().RenderGUI();
-        
+        FreeCam::GetInstance().RenderGUI();
         ImGui::EndTabItem();
     }
 }

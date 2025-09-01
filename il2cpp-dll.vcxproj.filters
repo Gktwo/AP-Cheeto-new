@@ -87,6 +87,7 @@
     <ClCompile Include="libraries\pipeline\modules\FPSModule.cpp" />
     <ClCompile Include="libraries\pipeline\modules\ESPModule.cpp" />
     <ClCompile Include="libraries\pipeline\modules\WorldSpeedModule.cpp" />
+    <ClCompile Include="libraries\pipeline\modules\FreeCam.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">
@@ -191,6 +192,8 @@
     <ClInclude Include="libraries\pipeline\modules\ESPModule.h" />
     <ClInclude Include="libraries\pipeline\modules\WorldSpeedModule.h" />
     <ClInclude Include="libraries\pipeline\modules\Modules.h" />
+    <ClInclude Include="libraries\pipeline\modules\ModuleRegistry.h" />
+    <ClInclude Include="libraries\pipeline\modules\FreeCam.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="appdata">

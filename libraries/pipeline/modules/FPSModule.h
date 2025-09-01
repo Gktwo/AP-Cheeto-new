@@ -19,18 +19,18 @@ public:
     // BaseModule interface implementation
     void Initialize() override;
     void Shutdown() override;
-    void Update() override;
+    void OnUpdate() override;
     void RenderGUI() override;
     void RenderOverlay() override;
     void ProcessHotkeys() override;
     
-    void LoadConfig() override;
-    void SaveConfig() override;
+
+
+    // Module uses BaseModule's enabled variable directly
 
 private:
     FPSModule();  // Private constructor for singleton
     
-    bool show_fps;
     uint8_t toggle_key;
     
     // Helper functions
