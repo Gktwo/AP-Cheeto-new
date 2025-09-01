@@ -80,6 +80,13 @@
     <ClCompile Include="libraries\pipeline\HookManager.cpp" />
     <ClCompile Include="libraries\pipeline\gui\tabs\VisualTAB.cpp" />
     <ClCompile Include="libraries\pipeline\gui\tabs\WorldTAB.cpp" />
+    <ClCompile Include="libraries\pipeline\modules\ModulesRegistration.cpp">
+      <Filter>libraries\pipeline\modules</Filter>
+    </ClCompile>
+    <ClCompile Include="libraries\pipeline\modules\ModuleManager.cpp" />
+    <ClCompile Include="libraries\pipeline\modules\FPSModule.cpp" />
+    <ClCompile Include="libraries\pipeline\modules\ESPModule.cpp" />
+    <ClCompile Include="libraries\pipeline\modules\WorldSpeedModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">
@@ -178,6 +185,12 @@
     <ClInclude Include="libraries\pipeline\HookManager.h" />
     <ClInclude Include="libraries\pipeline\gui\tabs\VisualTAB.h" />
     <ClInclude Include="libraries\pipeline\gui\tabs\WorldTAB.h" />
+    <ClInclude Include="libraries\pipeline\modules\ModuleManager.h" />
+    <ClInclude Include="libraries\pipeline\modules\BaseModule.h" />
+    <ClInclude Include="libraries\pipeline\modules\FPSModule.h" />
+    <ClInclude Include="libraries\pipeline\modules\ESPModule.h" />
+    <ClInclude Include="libraries\pipeline\modules\WorldSpeedModule.h" />
+    <ClInclude Include="libraries\pipeline\modules\Modules.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="appdata">
@@ -197,6 +210,21 @@
     </Filter>
     <Filter Include="libraries\detours">
       <UniqueIdentifier>{3f1814ec-f857-47f7-b184-898cf0caf6cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\pipeline">
+      <UniqueIdentifier>{00000000-0000-0000-0000-000000000001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\pipeline\modules">
+      <UniqueIdentifier>{00000000-0000-0000-0000-000000000002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\pipeline\hooks">
+      <UniqueIdentifier>{00000000-0000-0000-0000-000000000003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\pipeline\gui">
+      <UniqueIdentifier>{00000000-0000-0000-0000-000000000004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\pipeline\gui\tabs">
+      <UniqueIdentifier>{00000000-0000-0000-0000-000000000005}</UniqueIdentifier>
     </Filter>
     <Filter Include="libraries\pipeline">
       <UniqueIdentifier>{e7678f60-1843-41c1-b40a-0d5450647fbc}</UniqueIdentifier>

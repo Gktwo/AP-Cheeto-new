@@ -5,7 +5,6 @@
 #include "imgui/imgui.h"
 #include <iostream>
 
-// Static instance pointer for hook access
 static WorldSpeedModule* g_worldSpeedModule = nullptr;
 
 WorldSpeedModule::WorldSpeedModule() 
@@ -31,14 +30,11 @@ void WorldSpeedModule::Shutdown() {
 }
 
 void WorldSpeedModule::Update() {
-    // Update logic if needed
 }
 
 void WorldSpeedModule::RenderGUI() {
     if (ImGui::CollapsingHeader("World Speed")) {
         ImGui::Indent();
-        
-        // World speed toggle
         if (ImGui::Checkbox("Enable World Speed", &world_speed_enabled)) {
             if (world_speed_enabled) {
                 EnableWorldSpeed();
@@ -49,59 +45,24 @@ void WorldSpeedModule::RenderGUI() {
             }
             SetEnabled(world_speed_enabled);
         }
-        
-        // Reset button
         ImGui::SameLine();
         if (ImGui::Button("Reset")) {
             ResetSpeed();
         }
-        
-        // Speed slider (only show when enabled)
         if (world_speed_enabled) {
             ImGui::Indent();
             ImGui::SliderFloat("Speed Value", &world_speed_value, 0.1f, 20.0f, "%.1f");
             ImGui::Unindent();
         }
-        
-        // Hotkey configuration
         ImGui::Text("Toggle Key: %s", KeyBinds::ToString(toggle_key));
         ImGui::SameLine();
         if (ImGui::Button("Change##world_speed_key")) {
-            // Key binding logic can be implemented here
         }
-        
-        // Current status display
-        // ImGui::Text("Status: ");
-        // ImGui::SameLine();
-        // if (world_speed_enabled) {
-        //     ImGui::TextColored(ImVec4(0.0f, 1.0f, 0.0f, 1.0f), "Active (%.1fx)", world_speed_value);
-        // } else {
-        //     ImGui::TextColored(ImVec4(0.5f, 0.5f, 0.5f, 1.0f), "Disabled");
-        // }
-        
         ImGui::Unindent();
     }
 }
 
 void WorldSpeedModule::RenderOverlay() {
-    //if (!enabled || !world_speed_enabled) return;
-    //
-    //// Display world speed overlay in top-right corner
-    //ImVec2 window_size = ImGui::GetIO().DisplaySize;
-    //ImVec2 pos(window_size.x - 150.0f, 10.0f);
-    //
-    //char speed_text[64];
-    //sprintf_s(speed_text, "World Speed: %.1fx", world_speed_value);
-    //
-    //ImVec4 color = (world_speed_value == 1.0f) ? 
-    //    ImVec4(1.0f, 1.0f, 1.0f, 1.0f) :  // White for normal speed
-    //    ImVec4(1.0f, 1.0f, 0.0f, 1.0f);   // Yellow for modified speed
-    //
-    //ImGui::GetForegroundDrawList()->AddText(
-    //    pos, 
-    //    ImGui::ColorConvertFloat4ToU32(color), 
-    //    speed_text
-    //);
 }
 
 void WorldSpeedModule::ProcessHotkeys() {
@@ -117,23 +78,18 @@ void WorldSpeedModule::ProcessHotkeys() {
 }
 
 void WorldSpeedModule::LoadConfig() {
-    // Load configuration from file or registry
-    // For now, use default values
 }
 
 void WorldSpeedModule::SaveConfig() {
-    // Save configuration to file or registry
 }
 
 void WorldSpeedModule::EnableWorldSpeed() {
     HookManager::install(app::AzurWorld_OnUpdate, AzurWorld_OnUpdate_world_speed_Hook);
-    
 }
 
 void WorldSpeedModule::DisableWorldSpeed() {
     app::Time_1_set_timeScale(1.0f, nullptr);
     HookManager::detach(AzurWorld_OnUpdate_world_speed_Hook);
-    
 }
 
 void WorldSpeedModule::ResetSpeed() {

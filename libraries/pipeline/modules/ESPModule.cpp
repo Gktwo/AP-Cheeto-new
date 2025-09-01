@@ -4,8 +4,8 @@
 #include "main.h"
 #include <iostream>
 
+
 ESPModule::ESPModule() : BaseModule("ESP"), esp_enabled(false), toggle_key(VK_F6) {
-    // Initialize colors
     red = ImColor(255, 0, 0);
     orange = ImColor(255, 165, 0);
     yellow = ImColor(255, 255, 0);
@@ -18,14 +18,11 @@ ESPModule::ESPModule() : BaseModule("ESP"), esp_enabled(false), toggle_key(VK_F6
     pink = ImColor(255, 192, 203);
     black = ImColor(0, 0, 0);
     gray = ImColor(128, 128, 128);
-    
-    // Initialize display settings
     show_monster = true;
     show_npc = true;
     show_friendly = true;
     show_puzzle = true;
     show_all = false;
-    
     show_distance = true;
     show_configid = false;
     show_configname = true;
@@ -44,28 +41,20 @@ void ESPModule::Shutdown() {
 }
 
 void ESPModule::Update() {
-    // Update logic if needed
 }
 
 void ESPModule::RenderGUI() {
     if (ImGui::CollapsingHeader("ESP Features")) {
         ImGui::Indent();
-        
-        // Main ESP toggle
         if (ImGui::Checkbox("ESP Enabled", &esp_enabled)) {
             SetEnabled(esp_enabled);
         }
-        
-        // Hotkey configuration
         ImGui::Text("Toggle Key: %s", KeyBinds::ToString(toggle_key));
         ImGui::SameLine();
         if (ImGui::Button("Change##esp_key")) {
-            // Key binding logic can be implemented here
         }
-        
         if (esp_enabled) {
             ImGui::Spacing();
-            
             if (ImGui::TreeNode("Display Types")) {
                 ImGui::Checkbox("Show Monsters", &show_monster);
                 ImGui::SameLine();
@@ -77,7 +66,6 @@ void ESPModule::RenderGUI() {
                 ImGui::Checkbox("Show All", &show_all);
                 ImGui::TreePop();
             }
-            
             if (ImGui::TreeNode("Display Info")) {
                 ImGui::Checkbox("Show Distance", &show_distance);
                 ImGui::SameLine();
@@ -90,14 +78,12 @@ void ESPModule::RenderGUI() {
                 ImGui::TreePop();
             }
         }
-        
         ImGui::Unindent();
     }
 }
 
 void ESPModule::RenderOverlay() {
     if (!enabled || !esp_enabled) return;
-    
     drawESP();
 }
 
@@ -109,12 +95,9 @@ void ESPModule::ProcessHotkeys() {
 }
 
 void ESPModule::LoadConfig() {
-    // Load configuration from file or registry
-    // For now, use default values
 }
 
 void ESPModule::SaveConfig() {
-    // Save configuration to file or registry
 }
 
 void ESPModule::drawESP() {
@@ -123,42 +106,29 @@ void ESPModule::drawESP() {
     app::Entity__Array* EN_AR = entityList->fields._items;
     int count = entityList->fields._size;
     auto playerPos = app::PlayerManager_GetMainPlayerPosition(app::AzurWorld_get_playerMgr(nullptr), nullptr);
-    
     for (size_t i = 0; i < count; i++) {
         app::Entity* entity = EN_AR->vector[i];
         if (entity == nullptr) continue;
-
         app::BaseData* data = entity->fields.data;
         if (data == nullptr) continue;
-        
-        // Get entity type and display info
         app::EEntityType__Enum entityType = app::BaseData_get_entityType(data, nullptr);
         EntityDisplayInfo displayInfo = getEntityDisplayInfo(entityType);
-        
-        // Check if this entity should be displayed
         if (!displayInfo.shouldShow) continue;
-
         auto screenWidth = app::Screen_get_width(nullptr);
         auto screenHeight = app::Screen_get_height(nullptr);
         app::Vector3 pos = app::BaseData_GetPosition(data, nullptr);
         float distance = app::Vector3_Distance(playerPos, pos, nullptr);
         if (distance > 300.f) continue;
-
         app::Vector3 rect = app::Camera_WorldToScreenPoint_1(app::Camera_get_main(nullptr), pos, nullptr);
         if (rect.z < 0.1f) continue;
-        
-        // Build display text
         std::string showtext = "";
-
         if (show_distance) {
             addtext(showtext, (std::to_string((int)distance) + "m"), true);
         }
-
         if (show_configid) {
             int id = app::BaseData_get_configId(data, nullptr);
             addtext(showtext, std::to_string(id));
         }
-
         if (show_configname) {
             std::string nameStr = "unknown";
             app::String* name = app::BaseData_get_configName(data, nullptr);
@@ -166,35 +136,25 @@ void ESPModule::drawESP() {
                 nameStr = il2cppi_to_string(name);
             addtext(showtext, nameStr);
         }
-
         if (show_entityid) {
             uint32_t entityId = app::BaseData_get_entityId(data, nullptr);
             addtext(showtext, std::to_string(entityId));
         }
-
         if (show_type) {
             std::string typeStr = std::string(magic_enum::enum_name(entityType));
             addtext(showtext, typeStr);
         }
-        
-        // Skip if no content to display
         if (showtext.empty()) continue;
-
         ImVec2 imguiPos(rect.x, screenHeight - rect.y);
-
         ImGui::PushFont(ImGui::GetIO().FontDefault);
         ImGui::GetForegroundDrawList()->AddText(nullptr, 18.0f, imguiPos, displayInfo.color, showtext.c_str());
         ImGui::PopFont();
-
-        // Draw connection line
         ImGui::GetForegroundDrawList()->AddLine(ImVec2(screenWidth / 2, 0), imguiPos, displayInfo.color, 1.0f);
     }
 }
 
 EntityDisplayInfo ESPModule::getEntityDisplayInfo(app::EEntityType__Enum type) {
     EntityDisplayInfo info;
-    
-    // Determine color based on entity type
     switch (type) {
     case app::EEntityType__Enum::Boss:
     case app::EEntityType__Enum::Monster:
@@ -223,7 +183,6 @@ EntityDisplayInfo ESPModule::getEntityDisplayInfo(app::EEntityType__Enum type) {
         info.shouldShow = show_all;
         break;
     }
-    
     return info;
 }
 
