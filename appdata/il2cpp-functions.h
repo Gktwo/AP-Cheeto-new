@@ -7,6 +7,8 @@
 // ******************************************************************************
 
 using namespace app;
+
+
 DO_APP_FUNC(0x020F4C50, AzurWorld*, AzurWorld_get_Instance, (MethodInfo* method));
 DO_APP_FUNC_METHODINFO(0x08302EB8, AzurWorld_get_Instance__MethodInfo);
 
@@ -20,9 +22,18 @@ DO_APP_FUNC(0x020F3830, void, AzurWorld_OnUpdate, (AzurWorld* __this, MethodInfo
 DO_APP_FUNC_METHODINFO(0x082FEA60, AzurWorld_OnUpdate__MethodInfo);
 
 
+DO_APP_FUNC(0x01EB0230, void, AntiCheatManager_Initialize, (MethodInfo * method));
+DO_APP_FUNC_METHODINFO(0x0822EAB8, AntiCheatManager_Initialize__MethodInfo);
+DO_APP_FUNC(0x01C76510, void *, AceSdkClient_LoadLibrary, (String * lpLibFileName, MethodInfo * method));
+DO_APP_FUNC_METHODINFO(0x083C7840, AceSdkClient_LoadLibrary__MethodInfo);
+DO_APP_FUNC(0x01C76AA0, AceSdkResult__Enum, AceSdkClient_ace_sdk_client_init, (AceSdkClient * * ace_client, MethodInfo * method));
+DO_APP_FUNC_METHODINFO(0x083C8230, AceSdkClient_ace_sdk_client_init__MethodInfo);
+
+
 DO_APP_FUNC(0x02500D20, List_1_Lens_Gameplay_Modules_BigWorld_Entity_*, EntityManager_GetAllEntities, (MethodInfo* method));
 DO_APP_FUNC_METHODINFO(0x082CED50, EntityManager_GetAllEntities__MethodInfo);
-
+DO_APP_FUNC(0x02500E70, List_1_Lens_Gameplay_Modules_BigWorld_MonsterEntity_ *, EntityManager_GetAllMonsters, (MethodInfo * method));
+DO_APP_FUNC_METHODINFO(0x082CF770, EntityManager_GetAllMonsters__MethodInfo);
 
 DO_APP_FUNC(0x021B8830, int32_t, BaseData_get_configId, (BaseData * __this, MethodInfo * method));//
 DO_APP_FUNC_METHODINFO(0x08373D68, BaseData_get_configId__MethodInfo);//
@@ -73,11 +84,18 @@ DO_APP_FUNC(0x062F9AF0, void, Transform_set_eulerAngles, (Transform* __this, Vec
 DO_APP_FUNC(0x062CB8C0, Transform*, GameObject_get_transform, (GameObject* __this, MethodInfo* method));
 DO_APP_FUNC(0x062F9770, Vector3, Transform_get_position, (Transform* __this, MethodInfo* method));
 DO_APP_FUNC(0x062F9FC0, void, Transform_set_position, (Transform* __this, Vector3 value, MethodInfo* method));
-DO_APP_FUNC(0x062CA280, Component*, GameObject_GetComponentByName, (GameObject* __this, String* type, MethodInfo* method));
+
+DO_APP_FUNC(0x062D0A80, Object_1*, Object_1_Instantiate, (Object_1* original, Vector3 position, Quaternion rotation, MethodInfo* method));
+DO_APP_FUNC_METHODINFO(0x0833FA18, Object_1_Instantiate__MethodInfo);
+DO_APP_FUNC(0x062CF6F0, void, Object_1_DestroyImmediate_1, (Object_1* obj, MethodInfo* method));
 
 
 
 DO_APP_FUNC(0x062CB010, void, GameObject_SetActive, (GameObject* __this, bool value, MethodInfo* method));
+DO_APP_FUNC(0x062CA280, Component*, GameObject_GetComponentByName, (GameObject* __this, String* type, MethodInfo* method));
+DO_APP_FUNC(0x062CA110, GameObject*, GameObject_Find, (String* name, MethodInfo* method));
+
+
 DO_APP_FUNC(0x062C7A20, GameObject*, Component_get_gameObject, (Component* __this, MethodInfo* method));
 
 DO_APP_FUNC(0x062F97C0, Vector3, Transform_get_right, (Transform* __this, MethodInfo* method));
@@ -97,15 +115,9 @@ DO_APP_FUNC(0x062C3870, Vector3, Vector3_Lerp, (Vector3 a, Vector3 b, float t, M
 DO_APP_FUNC(0x062C34D0, float, Vector3_Distance, (Vector3 a, Vector3 b, MethodInfo* method));
 
 
-DO_APP_FUNC(0x062D0A80, Object_1*, Object_1_Instantiate, (Object_1* original, Vector3 position, Quaternion rotation, MethodInfo* method));
-DO_APP_FUNC_METHODINFO(0x0833FA18, Object_1_Instantiate__MethodInfo);
-DO_APP_FUNC(0x062CF6F0, void, Object_1_DestroyImmediate_1, (Object_1* obj, MethodInfo* method));
 
 
-//DO_APP_FUNC(0x0281FA80, bool, CharacterLook_get_lockCursor, (CharacterLook* __this, MethodInfo* method));
-//DO_APP_FUNC_METHODINFO(0x083A8A10, CharacterLook_get_lockCursor__MethodInfo);
-//DO_APP_FUNC(0x0281FDB0, void, CharacterLook_set_lockCursor, (CharacterLook* __this, bool value, MethodInfo* method));
-//DO_APP_FUNC_METHODINFO(0x083AA060, CharacterLook_set_lockCursor__MethodInfo);
+
 
 
 DO_APP_FUNC(0x062B05C0, bool, Cursor_1_get_visible, (MethodInfo* method));
@@ -116,3 +128,9 @@ DO_APP_FUNC(0x062B05F0, void, Cursor_1_set_lockState, (CursorLockMode__Enum valu
 
 DO_APP_FUNC(0x062A19A0, bool, RenderSettings_get_fog, (MethodInfo* method));
 DO_APP_FUNC(0x062A2100, void, RenderSettings_set_fog, (bool value, MethodInfo* method));
+
+
+DO_APP_FUNC(0x00FECEC0, String*, LTextMeshProUGUI_get_text, (LTextMeshProUGUI* __this, MethodInfo* method));
+DO_APP_FUNC_METHODINFO(0x08324BA0, LTextMeshProUGUI_get_text__MethodInfo);
+DO_APP_FUNC(0x00FED110, void, LTextMeshProUGUI_set_text, (LTextMeshProUGUI* __this, String* value, MethodInfo* method));
+DO_APP_FUNC_METHODINFO(0x083255C0, LTextMeshProUGUI_set_text__MethodInfo);

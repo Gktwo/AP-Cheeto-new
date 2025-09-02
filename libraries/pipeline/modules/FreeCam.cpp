@@ -33,7 +33,7 @@ FreeCam::FreeCam() : BaseModule("FPS Monitor"),
 }
 
 void FreeCam::Initialize() {
-	std::cout << "[INFO] FPS Module initialized" << std::endl;
+	//std::cout << "[INFO] FPS Module initialized" << std::endl;
 
 }
 

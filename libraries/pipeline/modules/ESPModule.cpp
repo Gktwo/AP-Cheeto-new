@@ -32,7 +32,7 @@ ESPModule::ESPModule() : BaseModule("ESP"), toggle_key(VK_F6) {
 }
 
 void ESPModule::Initialize() {
-    std::cout << "[INFO] ESP Module initialized" << std::endl;
+   // std::cout << "[INFO] ESP Module initialized" << std::endl;
     LoadConfig();
 }
 

@@ -39,6 +39,11 @@ DWORD WINAPI UnloadWatcherThread(LPVOID lpParam)
  return 0;
 }
 
+void AntiCheatManager_Initialize_hook(MethodInfo* method)
+{
+	std::cout << "[INFO]  AntiCheat Bypassed" << std::endl;
+	return;
+}
 // Custom injected code entry point
 void Run(LPVOID lpParam)
 {
@@ -48,12 +53,14 @@ void Run(LPVOID lpParam)
  // il2cppi_log_write("Startup");
 
  // If you would like to output to a new console window, use il2cppi_new_console() to open one and redirect stdout
- il2cppi_new_console();
- SetConsoleTitleA("Example App");
+ //il2cppi_new_console();
+ Logger_::attach().showFileName().showLineNumber().consoleOnly().enableColors();
+ SetConsoleTitleA("il2cpp Game Console");
 
  init_il2cpp();
- 
- std::cout << "[INFO] Initializing.. " << std::endl;
+ HookManager::install(app::AntiCheatManager_Initialize, AntiCheatManager_Initialize_hook);
+ LOG_INFO("Initializing..");
+// std::cout << "[INFO] Initializing.. " << std::endl;
 
  // Initialize thread data - DO NOT REMOVE
  Il2CppDomain* _domain = il2cpp_domain_get();
@@ -61,20 +68,24 @@ void Run(LPVOID lpParam)
 
  // Check if IL2CPP domain is found
  if (_domain) {
-  std::cout << "[INFO] IL2CPP Domain Found: " << _domain << std::endl;
-
+  LOG_INFO("IL2CPP Domain Found: ");
+  //std::cout << "[INFO] IL2CPP Domain Found: " << _domain << std::endl;
+  
   // Attach thread to IL2CPP domain
   _thread = il2cpp_thread_attach(_domain);
 
   if (_thread) {
-   std::cout << "[INFO] IL2CPP Thread Attached Successfully: " << _thread << std::endl;
+	  LOG_INFO("IL2CPP Thread Attached Successfully: ");
+  // std::cout << "[INFO] IL2CPP Thread Attached Successfully: " << _thread << std::endl;
   }
   else {
-   std::cout << "[ERROR] Failed to Attach IL2CPP Thread!" << std::endl;
+	  LOG_ERROR("Failed to Attach IL2CPP Thread!");
+ //  std::cout << "[ERROR] Failed to Attach IL2CPP Thread!" << std::endl;
   }
  }
  else {
-  std::cout << "[ERROR] IL2CPP Domain Not Found!" << std::endl;
+	 LOG_ERROR("IL2CPP Domain Not Found!");
+ // std::cout << "[ERROR] IL2CPP Domain Not Found!" << std::endl;
  }
 
  DetourInitilization();

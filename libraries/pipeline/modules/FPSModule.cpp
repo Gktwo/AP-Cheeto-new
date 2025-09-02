@@ -9,7 +9,7 @@ FPSModule::FPSModule() : BaseModule("FPS Monitor"), toggle_key(VK_F5) {
 }
 
 void FPSModule::Initialize() {
-    std::cout << "[INFO] FPS Module initialized" << std::endl;
+   // std::cout << "[INFO] FPS Module initialized" << std::endl;
     LoadConfig();
 }
 

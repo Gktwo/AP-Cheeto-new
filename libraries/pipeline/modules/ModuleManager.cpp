@@ -31,8 +31,8 @@ void ModuleManager::InitializeAll() {
         std::cout << "[WARNING] ModuleManager already initialized" << std::endl;
         return;
     }
-
-    std::cout << "[INFO] Initializing ModuleManager" << std::endl;
+    LOG_INFO("Initializing ModuleManager");
+    //std::cout << "[INFO] Initializing ModuleManager" << std::endl;
 
     modules.clear();
     const auto& regs = Modules::ModuleRegistry::GetInstance().GetModules();
@@ -41,14 +41,17 @@ void ModuleManager::InitializeAll() {
             BaseModule& mod = mi.factory();
             modules.push_back(&mod);
             mod.Initialize();
-            std::cout << "[INFO] " << mod.GetName() << " initialized" << std::endl;
+            LOG_INFO("{} initialized", mod.GetName());
+            //std::cout << "[INFO] " << mod.GetName() << " initialized" << std::endl;
         } catch (const std::exception& e) {
-            std::cout << "[ERROR] Failed to initialize module '" << mi.name << "': " << e.what() << std::endl;
+            LOG_ERROR("Failed to initialize module '{}': {}", mi.name, e.what());
+           // std::cout << "[ERROR] Failed to initialize module '" << mi.name << "': " << e.what() << std::endl;
         }
     }
 
     initialized = true;
-    std::cout << "[INFO] ModuleManager initialization complete" << std::endl;
+    LOG_INFO("ModuleManager initialization complete");
+    //std::cout << "[INFO] ModuleManager initialization complete" << std::endl;
 }
 
 void ModuleManager::ShutdownAll() {

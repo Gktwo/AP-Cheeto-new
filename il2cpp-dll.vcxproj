@@ -73,6 +73,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="libraries\Logger\logger.cpp" />
     <ClCompile Include="libraries\pipeline\Dx11.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -213,6 +214,7 @@
     <ClInclude Include="framework\il2cpp-init.h" />
     <ClInclude Include="framework\pch-il2cpp.h" />
     <ClInclude Include="framework\version.h" />
+    <ClInclude Include="libraries\Logger\logger.h" />
     <ClInclude Include="libraries\pipeline\gui\tabs\AboutTAB.h" />
     <ClInclude Include="libraries\pipeline\gui\tabs\ESPTAB.h" />
     <ClInclude Include="libraries\pipeline\gui\tabs\PlayTAB.h" />
@@ -256,6 +258,7 @@
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{D2AEC39B-FCFC-41C9-B92E-BFC982C7E897}</ProjectGuid>
     <RootNamespace>Il2CppDLL</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <!--<WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>-->
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -398,9 +401,10 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch-il2cpp.h</PrecompiledHeaderFile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)appdata;$(ProjectDir)framework;$(ProjectDir)user;$(ProjectDir)libraries</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 /Zm500 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -89,6 +89,7 @@
     <ClCompile Include="libraries\pipeline\modules\WorldSpeedModule.cpp" />
     <ClCompile Include="libraries\pipeline\modules\FreeCam.cpp" />
     <ClCompile Include="libraries\pipeline\modules\NoFog.cpp" />
+    <ClCompile Include="libraries\Logger\logger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">
@@ -196,6 +197,7 @@
     <ClInclude Include="libraries\pipeline\modules\ModuleRegistry.h" />
     <ClInclude Include="libraries\pipeline\modules\FreeCam.h" />
     <ClInclude Include="libraries\pipeline\modules\NoFog.h" />
+    <ClInclude Include="libraries\Logger\logger.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="appdata">

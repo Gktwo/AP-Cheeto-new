@@ -7,4 +7,5 @@
 #include "../libraries/json/single_include/nlohmann/json.hpp"
 #include "../libraries/magic_enum/include/magic_enum/magic_enum.hpp"
 #include "../libraries/pipeline/HookManager.h"
+#include "../libraries/Logger/logger.h"
 #endif // PCH_IL2CPP_H

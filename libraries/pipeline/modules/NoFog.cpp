@@ -12,7 +12,7 @@ NoFog::NoFog()
 }
 
 void NoFog::Initialize() {
-	std::cout << "[INFO] No Fog Module initialized" << std::endl;
+	//std::cout << "[INFO] No Fog Module initialized" << std::endl;
 	LoadConfig();
 }
 

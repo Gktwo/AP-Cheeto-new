@@ -13,7 +13,7 @@ WorldSpeedModule::WorldSpeedModule()
 }
 
 void WorldSpeedModule::Initialize() {
-	std::cout << "[INFO] World Speed Module initialized" << std::endl;
+	//std::cout << "[INFO] World Speed Module initialized" << std::endl;
 	LoadConfig();
 }
 
