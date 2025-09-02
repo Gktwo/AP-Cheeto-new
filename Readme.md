@@ -1,4 +1,4 @@
-# AzurPromilia Game Modification Tool
+# AzurPromilia Cheeto
 
 ## Overview
 
@@ -6,49 +6,23 @@ This project is a C++ DLL-based modification tool for the AzurPromilia game, bui
 
 ## Features
 
-### ESP (Extra Sensory Perception)
-- **Entity Display**: Show different types of game entities with customizable visibility
-  - Monsters, NPCs, Friendly units, Puzzles
-  - Configurable display options for distance, entity ID, config name, and type information
-- **Visual Enhancements**: Color-coded entity highlighting with distance information
-- **Collapsible UI**: Organized settings interface with expandable categories
+- ESP (Extra Sensory Perception)
+- World Speed
+- Free Camera(Unfinished)
 
-### Core Components
-- **IL2CPP Integration**: Direct game memory access and function hooking
-- **ImGui Interface**: Modern, responsive user interface for configuration
-- **DirectX 11 Rendering**: Hardware-accelerated overlay rendering
-- **Hook Management**: Safe and reliable game function interception
-
-## Technical Stack
-
-- **Language**: C++
-- **Graphics**: DirectX 11 + ImGui
-- **Libraries**: 
-  - magic_enum (enum reflection)
-  - nlohmann/json (configuration management)
-  - Microsoft Detours (function hooking)
-- **Build System**: Visual Studio 2019/2022
-
-## Project Structure
-
-```
-├── framework/          # Core IL2CPP integration and initialization
-├── libraries/          # Third-party dependencies
-│   ├── imgui/         # GUI framework
-│   ├── json/          # JSON processing
-│   ├── magic_enum/    # Enum utilities
-│   └── pipeline/      # Main application logic
-├── appdata/           # IL2CPP API definitions
-└── user/              # Entry point and main logic
-```
 
 ## Usage
 
-1. Compile the project using Visual Studio
-2. Inject the generated DLL into the target game process
-3. Use the in-game overlay to configure ESP settings
-4. Toggle features using the collapsible interface
+1. Compile the project using Visual Studio(or download from [Action](https://bgithub.xyz/Gktwo/AP-Cheeto-new/actions))
+2. Put the dll file into the game folder
+3. start game ，then press F12 to show the panel
+
 
 ## Disclaimer
 
 This tool is for educational and research purposes only. Use responsibly and in accordance with the game's terms of service.
+
+## Special Thanks
+
+- [Il2CppInspectorPro](https://github.com/jadis0x/Il2CppInspectorPro)
+
