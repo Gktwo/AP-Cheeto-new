@@ -99,6 +99,8 @@ static const std::map<uint8_t, const char*> KeyMap = {
 	{0xA1, "R SHIFT"},
 	{0xA2, "L CTRL"},
 	{0xA3, "R CTRL"},
+	{0xA4, "L ALT"},
+	{0xA5, "R ALT"},
 };
 
 static std::bitset<0xFF> PrevKeyState;
@@ -106,7 +108,6 @@ static std::bitset<0xFF> KeyState;
 
 void KeyBinds::WndProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	PrevKeyState = KeyState;
 	switch (uMsg) {
 	case WM_LBUTTONDOWN: case WM_LBUTTONDBLCLK:
 	case WM_RBUTTONDOWN: case WM_RBUTTONDBLCLK:
@@ -156,6 +157,11 @@ void KeyBinds::WndProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	}
 }
 
+void KeyBinds::UpdateKeyStates()
+{
+	PrevKeyState = KeyState;
+}
+
 const char* KeyBinds::ToString(uint8_t key)
 {
 	auto iter = KeyMap.find(key);
@@ -177,8 +183,7 @@ std::vector<uint8_t> KeyBinds::GetValidKeys()
 
 bool KeyBinds::IsKeyDown(uint8_t key)
 {
-	// For specific keys like VK_LCONTROL, VK_RCONTROL, use GetAsyncKeyState for more reliable detection
-	if (key == 0xA2 || key == 0xA3) { // VK_LCONTROL or VK_RCONTROL
+	if (key == VK_LCONTROL || key == VK_RCONTROL || key == VK_LMENU) {
 		return (GetAsyncKeyState(key) & 0x8000) != 0;
 	}
 	return KeyState[key];
@@ -186,6 +191,13 @@ bool KeyBinds::IsKeyDown(uint8_t key)
 
 bool KeyBinds::IsKeyPressed(uint8_t key)
 {
+	if (key == VK_LCONTROL || key == VK_RCONTROL || key == VK_LMENU ) { // VK_LCONTROL, VK_RCONTROL, VK_LMENU, VK_RMENU
+		bool currentState = (GetAsyncKeyState(key) & 0x8000) != 0;
+		bool prevState = PrevKeyState[key];
+		// Update KeyState to match GetAsyncKeyState for consistency
+		KeyState[key] = currentState;
+		return (!prevState && currentState);
+	}
 	return (!PrevKeyState[key] && KeyState[key]);
 }
 

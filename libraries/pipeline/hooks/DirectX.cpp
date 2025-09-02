@@ -75,7 +75,17 @@ LRESULT __stdcall dWndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 	{
 		settings.bShowMenu = !settings.bShowMenu;
 	}
-
+	// Mouse visibility control with Left Alt key (on key release)
+    bool isMouseVisible = app::Cursor_1_get_visible(nullptr);
+	if (KeyBinds::IsKeyPressed(VK_LMENU)) {
+		//printf("left alt pressed\n");
+		//printf("isMouseVisible %d\n", isMouseVisible);
+		isMouseVisible = !isMouseVisible;
+		//printf("isMouseVisible -> %d\n", isMouseVisible);
+		app::Cursor_1_set_visible(isMouseVisible, nullptr);
+		app::Cursor_1_set_lockState(isMouseVisible ? app::CursorLockMode__Enum::None : app::CursorLockMode__Enum::Locked, nullptr);
+		//printf("isMouseVisible now -> %d\n", app::Cursor_1_get_visible(nullptr));
+	}
 	return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 }
 
@@ -175,6 +185,10 @@ HRESULT __stdcall dPresent(IDXGISwapChain* __this, UINT SyncInterval, UINT Flags
 
 	// Render all module overlays (ESP, FPS, etc.)
 	MODULE_MANAGER.RenderAllOverlays();
+
+	
+	
+
 
 	ImGui::EndFrame();
 	ImGui::Render();

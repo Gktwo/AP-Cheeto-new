@@ -9,6 +9,7 @@ namespace KeyBinds {
     };
 
     void WndProc(UINT uMsg, WPARAM wParam, LPARAM lParam);
+    void UpdateKeyStates();
     const char* ToString(uint8_t key);
     std::vector<uint8_t> GetValidKeys();
     bool IsKeyDown(uint8_t key);

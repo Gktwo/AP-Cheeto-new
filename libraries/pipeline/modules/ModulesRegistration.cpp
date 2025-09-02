@@ -4,12 +4,14 @@
 #include "ESPModule.h"
 #include "WorldSpeedModule.h"
 #include "FreeCam.h"
+#include "NoFog.h"
 
 #define MODULES(X) \
     X(FPSModule) \
     X(ESPModule) \
     X(WorldSpeedModule)\
-    X(FreeCam)
+    X(FreeCam)\
+    X(NoFog)
 
 #define REGISTER_ONE(Module) REGISTER_MODULE(Module)
 #define REGISTER_ALL() MODULES(REGISTER_ONE)

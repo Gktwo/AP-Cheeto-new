@@ -1,6 +1,7 @@
 #include "pch-il2cpp.h"
 #include "ModuleManager.h"
 #include "ModuleRegistry.h"
+#include "../keybinds.h"
 #include <iostream>
 #include <algorithm>
 #include <memory>
@@ -117,6 +118,7 @@ void ModuleManager::ProcessAllHotkeys() {
             std::cout << "[ERROR] Failed to process hotkeys for module '" << m->GetName() << "': " << e.what() << std::endl;
         }
     }
+    KeyBinds::UpdateKeyStates();
 }
 
 void ModuleManager::LoadAllConfigs() {

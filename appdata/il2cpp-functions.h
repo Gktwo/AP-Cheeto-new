@@ -59,8 +59,9 @@ DO_APP_FUNC(0x062A4F20, int32_t, Screen_get_height, (MethodInfo* method));
 
 DO_APP_FUNC(0x0625FF70, Camera*, Camera_get_main, (MethodInfo* method));
 DO_APP_FUNC(0x0625F230, Vector3, Camera_WorldToScreenPoint_1, (Camera* __this, Vector3 position, MethodInfo* method));
-DO_APP_FUNC(0x062C34D0, float, Vector3_Distance, (Vector3 a, Vector3 b, MethodInfo* method));
-
+DO_APP_FUNC(0x0625FD10, float, Camera_get_fieldOfView, (Camera* __this, MethodInfo* method));
+DO_APP_FUNC(0x062612D0, void, Camera_set_fieldOfView, (Camera* __this, float value, MethodInfo* method));
+DO_APP_FUNC(0x0625D0B0, void, Camera_CopyFrom, (Camera* __this, Camera* other, MethodInfo* method));
 
 
 DO_APP_FUNC(0x062F32F0, float, Time_1_get_timeScale, (MethodInfo* method));
@@ -93,11 +94,25 @@ DO_APP_FUNC_METHODINFO(0x08399E28, Input_GetAxis__MethodInfo);
 
 DO_APP_FUNC(0x062CCCC0, float, Mathf_Lerp, (float a, float b, float t, MethodInfo* method));
 DO_APP_FUNC(0x062C3870, Vector3, Vector3_Lerp, (Vector3 a, Vector3 b, float t, MethodInfo* method));
+DO_APP_FUNC(0x062C34D0, float, Vector3_Distance, (Vector3 a, Vector3 b, MethodInfo* method));
 
-DO_APP_FUNC(0x0625FD10, float, Camera_get_fieldOfView, (Camera* __this, MethodInfo* method));
-DO_APP_FUNC(0x062612D0, void, Camera_set_fieldOfView, (Camera* __this, float value, MethodInfo* method));
-DO_APP_FUNC(0x0625D0B0, void, Camera_CopyFrom, (Camera* __this, Camera* other, MethodInfo* method));
 
 DO_APP_FUNC(0x062D0A80, Object_1*, Object_1_Instantiate, (Object_1* original, Vector3 position, Quaternion rotation, MethodInfo* method));
 DO_APP_FUNC_METHODINFO(0x0833FA18, Object_1_Instantiate__MethodInfo);
 DO_APP_FUNC(0x062CF6F0, void, Object_1_DestroyImmediate_1, (Object_1* obj, MethodInfo* method));
+
+
+//DO_APP_FUNC(0x0281FA80, bool, CharacterLook_get_lockCursor, (CharacterLook* __this, MethodInfo* method));
+//DO_APP_FUNC_METHODINFO(0x083A8A10, CharacterLook_get_lockCursor__MethodInfo);
+//DO_APP_FUNC(0x0281FDB0, void, CharacterLook_set_lockCursor, (CharacterLook* __this, bool value, MethodInfo* method));
+//DO_APP_FUNC_METHODINFO(0x083AA060, CharacterLook_set_lockCursor__MethodInfo);
+
+
+DO_APP_FUNC(0x062B05C0, bool, Cursor_1_get_visible, (MethodInfo* method));
+DO_APP_FUNC(0x062B0630, void, Cursor_1_set_visible, (bool value, MethodInfo* method));
+DO_APP_FUNC(0x062B0590, CursorLockMode__Enum, Cursor_1_get_lockState, (MethodInfo* method));
+DO_APP_FUNC(0x062B05F0, void, Cursor_1_set_lockState, (CursorLockMode__Enum value, MethodInfo* method));
+
+
+DO_APP_FUNC(0x062A19A0, bool, RenderSettings_get_fog, (MethodInfo* method));
+DO_APP_FUNC(0x062A2100, void, RenderSettings_set_fog, (bool value, MethodInfo* method));
