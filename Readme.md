@@ -6,9 +6,11 @@ This project is a C++ DLL-based modification tool for the AzurPromilia game, bui
 
 ## Features
 
-- ESP (Extra Sensory Perception)
-- World Speed
-- Free Camera(Unfinished)
+* ESP (Extra Sensory Perception)
+* World Speed
+* Free Camera
+* NoFog （cant use）
+
 
 
 ## Usage
@@ -18,11 +20,11 @@ This project is a C++ DLL-based modification tool for the AzurPromilia game, bui
 3. start game ，then press F12 to show the panel
 
 
+
 ## Disclaimer
 
 This tool is for educational and research purposes only. Use responsibly and in accordance with the game's terms of service.
 
 ## Special Thanks
 
-- [Il2CppInspectorPro](https://github.com/jadis0x/Il2CppInspectorPro)
-
+* [Il2CppInspectorPro](https://github.com/jadis0x/Il2CppInspectorPro)
