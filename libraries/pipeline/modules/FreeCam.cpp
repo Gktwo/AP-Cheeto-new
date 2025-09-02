@@ -49,7 +49,10 @@ void FreeCam::OnUpdate() {
 void FreeCam::RenderGUI() {
 	if (ImGui::CollapsingHeader("Free Camera")) {
 		ImGui::Indent();
-		if (ImGui::Checkbox("On/Off", &enabled)) {
+		if (
+            //ImGui::Checkbox("On/Off", &enabled)
+            ToggleSwitch("On/Off", &enabled)
+            ) {
 			// enabled state is directly managed by BaseModule
             if (enabled)
                 HookManager::install(app::AzurWorld_OnUpdate, AzurWorld_OnUpdate_FreeCam_Hook);

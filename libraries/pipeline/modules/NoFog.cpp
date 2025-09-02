@@ -30,7 +30,10 @@ void NoFog::OnUpdate() {
 void NoFog::RenderGUI() {
 	if (ImGui::CollapsingHeader("No Fog")) {
 		ImGui::Indent();
-		if (ImGui::Checkbox("Enable No Fog", &enabled)) {
+		if (
+			//ImGui::Checkbox("Enable No Fog", &enabled)
+			ToggleSwitch("Enable No Fog", &enabled)
+			) {
 			if (enabled) {
 				EnableNoFog();
 				std::cout << "[INFO] No Fog enabled "  << std::endl;

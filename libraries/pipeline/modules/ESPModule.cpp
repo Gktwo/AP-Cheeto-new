@@ -47,7 +47,8 @@ void ESPModule::OnUpdate() {
 void ESPModule::RenderGUI() {
     if (ImGui::CollapsingHeader("ESP Features")) {
         ImGui::Indent();
-        ImGui::Checkbox("ESP Enabled", &enabled);
+       // ImGui::Checkbox("ESP Enabled", &enabled);
+        ToggleSwitch("ESP Enabled", &enabled);
         ImGui::Text("Toggle Key: %s", KeyBinds::ToString(toggle_key));
         ImGui::SameLine();
         if (ImGui::Button("Change##esp_key")) {

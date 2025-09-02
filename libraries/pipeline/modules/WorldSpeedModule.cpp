@@ -31,7 +31,10 @@ void WorldSpeedModule::OnUpdate() {
 void WorldSpeedModule::RenderGUI() {
 	if (ImGui::CollapsingHeader("World Speed")) {
 		ImGui::Indent();
-		if (ImGui::Checkbox("Enable World Speed", &enabled)) {
+		if (
+			//ImGui::Checkbox("Enable World Speed", &enabled)
+			ToggleSwitch("Enable World Speed", &enabled)
+			) {
 			if (enabled) {
 				EnableWorldSpeed();
 				std::cout << "[INFO] World Speed enabled with value: " << world_speed_value << std::endl;

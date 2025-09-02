@@ -25,13 +25,17 @@ void FPSModule::OnUpdate() {
 void FPSModule::RenderGUI() {
     if (ImGui::CollapsingHeader("FPS Monitor")) {
         ImGui::Indent();
-        if (ImGui::Checkbox("Show FPS Overlay", &enabled)) {
+        if (
+           //ImGui::Checkbox("Show FPS Overlay", &enabled)
+            ToggleSwitch("Show FPS Overlay", &enabled)
+            ) {
             // enabled state is directly managed by BaseModule
         }
         ImGui::Text("Toggle Key: %s", KeyBinds::ToString(toggle_key));
         ImGui::SameLine();
         if (ImGui::Button("Change##fps_key")) {
         }
+        ImGui::Unindent();
     }
 }
 

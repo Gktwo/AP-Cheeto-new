@@ -18,7 +18,7 @@ namespace Menu {
 
 	void Init() {
 		ImGui::SetNextWindowBgAlpha(0.7f);
-		ImGui::SetNextWindowSize(ImVec2(800, 600));
+		ImGui::SetNextWindowSize(ImVec2(500, 500));
 		init = true;
 	}
 

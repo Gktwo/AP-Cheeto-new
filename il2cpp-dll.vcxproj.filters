@@ -198,6 +198,7 @@
     <ClInclude Include="libraries\pipeline\modules\FreeCam.h" />
     <ClInclude Include="libraries\pipeline\modules\NoFog.h" />
     <ClInclude Include="libraries\Logger\logger.h" />
+    <ClInclude Include="libraries\pipeline\gui\imgui_custom.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="appdata">

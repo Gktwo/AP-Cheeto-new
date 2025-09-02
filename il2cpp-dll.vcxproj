@@ -215,6 +215,7 @@
     <ClInclude Include="framework\pch-il2cpp.h" />
     <ClInclude Include="framework\version.h" />
     <ClInclude Include="libraries\Logger\logger.h" />
+    <ClInclude Include="libraries\pipeline\gui\imgui_custom.h" />
     <ClInclude Include="libraries\pipeline\gui\tabs\AboutTAB.h" />
     <ClInclude Include="libraries\pipeline\gui\tabs\ESPTAB.h" />
     <ClInclude Include="libraries\pipeline\gui\tabs\PlayTAB.h" />
@@ -403,7 +404,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)appdata;$(ProjectDir)framework;$(ProjectDir)user;$(ProjectDir)libraries</AdditionalIncludeDirectories>
-      <AdditionalOptions>/utf-8 /Zm500 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
