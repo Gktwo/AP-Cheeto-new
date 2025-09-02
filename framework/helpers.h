@@ -24,6 +24,18 @@ std::string il2cppi_to_string(Il2CppString* str);
 
 // Helper function to convert System.String to std::string
 std::string il2cppi_to_string(app::String* str);
+
+// Helper function to convert std::string to Il2CppString
+Il2CppString* string_to_il2cppi(const std::string& str);
+
+// Helper function to convert char* to Il2CppString
+Il2CppString* string_to_il2cppi(const char* str);
+
+// Helper function to convert std::string to System.String
+app::String* string_to_il2cppi_app(const std::string& str);
+
+// Helper function to convert char* to System.String
+app::String* string_to_il2cppi_app(const char* str);
 #endif
 
 // Helper function to check if a metadata usage pointer is initialized

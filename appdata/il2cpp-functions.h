@@ -65,3 +65,39 @@ DO_APP_FUNC(0x062C34D0, float, Vector3_Distance, (Vector3 a, Vector3 b, MethodIn
 
 DO_APP_FUNC(0x062F32F0, float, Time_1_get_timeScale, (MethodInfo* method));
 DO_APP_FUNC(0x062F35A0, void, Time_1_set_timeScale, (float value, MethodInfo* method));
+
+
+DO_APP_FUNC(0x062F90C0, Vector3, Transform_get_eulerAngles, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x062F9AF0, void, Transform_set_eulerAngles, (Transform* __this, Vector3 value, MethodInfo* method));
+DO_APP_FUNC(0x062CB8C0, Transform*, GameObject_get_transform, (GameObject* __this, MethodInfo* method));
+DO_APP_FUNC(0x062F9770, Vector3, Transform_get_position, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x062F9FC0, void, Transform_set_position, (Transform* __this, Vector3 value, MethodInfo* method));
+DO_APP_FUNC(0x062CA280, Component*, GameObject_GetComponentByName, (GameObject* __this, String* type, MethodInfo* method));
+
+
+
+DO_APP_FUNC(0x062CB010, void, GameObject_SetActive, (GameObject* __this, bool value, MethodInfo* method));
+DO_APP_FUNC(0x062C7A20, GameObject*, Component_get_gameObject, (Component* __this, MethodInfo* method));
+
+DO_APP_FUNC(0x062F97C0, Vector3, Transform_get_right, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x062FA010, void, Transform_set_right, (Transform* __this, Vector3 value, MethodInfo* method));
+DO_APP_FUNC(0x062F9930, Vector3, Transform_get_up, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x062FA160, void, Transform_set_up, (Transform* __this, Vector3 value, MethodInfo* method));
+DO_APP_FUNC(0x062F9190, Vector3, Transform_get_forward, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x062F9B80, void, Transform_set_forward, (Transform* __this, Vector3 value, MethodInfo* method));
+DO_APP_FUNC(0x062F98E0, Quaternion, Transform_get_rotation, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x062FA110, void, Transform_set_rotation, (Transform* __this, Quaternion value, MethodInfo* method));
+
+DO_APP_FUNC(0x063757F0, float, Input_GetAxis, (String* axisName, MethodInfo* method));
+DO_APP_FUNC_METHODINFO(0x08399E28, Input_GetAxis__MethodInfo);
+
+DO_APP_FUNC(0x062CCCC0, float, Mathf_Lerp, (float a, float b, float t, MethodInfo* method));
+DO_APP_FUNC(0x062C3870, Vector3, Vector3_Lerp, (Vector3 a, Vector3 b, float t, MethodInfo* method));
+
+DO_APP_FUNC(0x0625FD10, float, Camera_get_fieldOfView, (Camera* __this, MethodInfo* method));
+DO_APP_FUNC(0x062612D0, void, Camera_set_fieldOfView, (Camera* __this, float value, MethodInfo* method));
+DO_APP_FUNC(0x0625D0B0, void, Camera_CopyFrom, (Camera* __this, Camera* other, MethodInfo* method));
+
+DO_APP_FUNC(0x062D0A80, Object_1*, Object_1_Instantiate, (Object_1* original, Vector3 position, Quaternion rotation, MethodInfo* method));
+DO_APP_FUNC_METHODINFO(0x0833FA18, Object_1_Instantiate__MethodInfo);
+DO_APP_FUNC(0x062CF6F0, void, Object_1_DestroyImmediate_1, (Object_1* obj, MethodInfo* method));

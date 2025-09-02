@@ -50,4 +50,26 @@ std::string il2cppi_to_string(Il2CppString* str) {
 std::string il2cppi_to_string(app::String* str) {
     return il2cppi_to_string(reinterpret_cast<Il2CppString*>(str));
 }
+
+// Helper function to convert std::string to Il2CppString
+Il2CppString* string_to_il2cppi(const std::string& str) {
+    std::u16string u16 = std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.from_bytes(str);
+    return il2cpp_string_new_utf16(reinterpret_cast<const Il2CppChar*>(u16.c_str()), (int32_t)u16.length());
+}
+
+//// Helper function to convert char* to Il2CppString
+Il2CppString* string_to_il2cppi(const char* str) {
+    if (str == nullptr) return nullptr;
+    return string_to_il2cppi(std::string(str));
+}
+
+// Helper function to convert std::string to System.String
+app::String* string_to_il2cppi_app(const std::string& str) {
+    return reinterpret_cast<app::String*>(string_to_il2cppi(str));
+}
+
+// Helper function to convert char* to System.String
+app::String* string_to_il2cppi_app(const char* str) {
+    return reinterpret_cast<app::String*>(string_to_il2cppi(str));
+}
 #endif

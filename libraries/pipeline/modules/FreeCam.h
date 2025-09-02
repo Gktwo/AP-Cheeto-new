@@ -54,9 +54,48 @@ private:
     uint8_t f_RightRoll;
     uint8_t f_ResetRoll;
 
+    app::GameObject* freeCam = nullptr;
+    app::GameObject* mainCam = nullptr;
+    app::Object_1* freeCamObj = nullptr;
+    //app::Object_1* mainCamObj = nullptr;
 
+    app::Transform* freeCam_Transform = nullptr;
+    app::Component* freeCam_Camera = nullptr;
+    app::Component* mainCam_Camera = nullptr;
+    app::Vector3 targetPosition;
+    app::Vector3 smoothPosition;
+    float smoothFOV = 0;
+    double focalLength = 0;
+    bool FCamisEnabled = false;
+
+    void EnableFreeCam();
+    void DisableFreeCam();
     static void AzurWorld_OnUpdate_FreeCam_Hook(app::AzurWorld* __this, MethodInfo* method);
 
+
+    class CameraRotation {
+    public:
+        float pitch, yaw, roll;
+
+        void InitializeFromTransform(app::Transform* t) {
+            auto t_eulerAngles = app::Transform_get_eulerAngles(t, nullptr);
+            pitch = t_eulerAngles.x;
+            yaw = t_eulerAngles.y;
+            roll = t_eulerAngles.z;
+        }
+
+        void LerpTowards(CameraRotation target, float lookRotationLerpPct, float rollRotationLerpPct) {
+            yaw = app::Mathf_Lerp(yaw, target.yaw, lookRotationLerpPct, nullptr);
+            pitch = app::Mathf_Lerp(pitch, target.pitch, lookRotationLerpPct, nullptr);
+            roll = app::Mathf_Lerp(roll, target.roll, rollRotationLerpPct, nullptr);
+        }
+
+        void UpdateTransform(app::Transform* t) {
+            app::Transform_set_eulerAngles(t, app::Vector3{ pitch, yaw, roll }, nullptr);
+        }
+    };
+    CameraRotation targetRotation = CameraRotation();
+    CameraRotation currentRotation = CameraRotation();
 
 
 };
