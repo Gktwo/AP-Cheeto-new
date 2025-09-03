@@ -42,8 +42,11 @@ private:
     std::vector<app::Scene> scenes;
     int selectedSceneIndex;
     
+    char searchFilter[256];
+    
     void RefreshSceneList();
     void RenderSceneSelector();
     void RenderGameObjectHierarchy(app::GameObject* obj, int index, const std::string& prefix = "");
     void RenderRefreshControls();
+    bool ShouldShowGameObject(const std::string& objName);
 };

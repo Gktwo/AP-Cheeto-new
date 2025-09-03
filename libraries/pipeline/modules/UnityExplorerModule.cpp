@@ -2,6 +2,8 @@
 #include "UnityExplorerModule.h"
 #include "../settings.h"
 #include "ModuleRegistry.h"
+#include <algorithm>
+#include <cctype>
 
 
 // Constructor
@@ -12,6 +14,7 @@ UnityExplorerModule::UnityExplorerModule() : BaseModule("Unity Explorer") {
 	refreshInterval = 3.0f;
 	selectedSceneIndex = 0;
 	lastRefreshTime = std::chrono::steady_clock::now();
+	memset(searchFilter, 0, sizeof(searchFilter));
 }
 
 
@@ -61,6 +64,12 @@ void UnityExplorerModule::RenderWindow()
 		ImGui::Separator();
 		RenderRefreshControls();
 		ImGui::Separator();
+		
+		// Search filter
+		ImGui::Text("Search Filter:");
+		ImGui::SetNextItemWidth(300);
+		ImGui::InputText("##SearchFilter", searchFilter, sizeof(searchFilter));
+		ImGui::Separator();
 
 		// Only render scene hierarchy if scenes have been loaded
 		if (scenes.empty()) {
@@ -94,7 +103,8 @@ void UnityExplorerModule::RenderWindow()
 
 void UnityExplorerModule::RenderOverlay()
 {
-	// Unity Explorer doesn't need overlay rendering
+
+	RenderWindow();
 }
 
 void UnityExplorerModule::ProcessHotkeys()
@@ -187,30 +197,74 @@ void UnityExplorerModule::RenderGameObjectHierarchy(app::GameObject* obj, int in
 	app::Transform* trans = app::GameObject_get_transform(obj, nullptr);
 
 	if (!trans) {
-		ImGui::Text("%s [%d]: %s (No Transform)", prefix.c_str(), index, objName.c_str());
+		if (ShouldShowGameObject(objName)) {
+			ImGui::Text("%s [%d]: %s (No Transform)", prefix.c_str(), index, objName.c_str());
+		}
 		return;
 	}
 
 	int childCount = app::Transform_get_childCount(trans, nullptr);
-
-	if (childCount > 0) {
-		std::string nodeLabel = prefix + " [" + std::to_string(index) + "]: " + objName;
-		if (ImGui::TreeNode(nodeLabel.c_str())) {
-			for (int i = 0; i < childCount; i++) {
-				app::Transform* child = app::Transform_GetChild(trans, i, nullptr);
-				if (child) {
-					app::GameObject* childObj = app::Component_get_gameObject(RCAST(app::Component*, child), nullptr);
-					if (childObj) {
-						RenderGameObjectHierarchy(childObj, i, "  ");
+	
+	// Check if this object or any of its children should be shown
+	bool shouldShowThis = ShouldShowGameObject(objName);
+	bool hasVisibleChildren = false;
+	
+	// Check if any children match the filter
+	if (!shouldShowThis && childCount > 0) {
+		for (int i = 0; i < childCount; i++) {
+			app::Transform* child = app::Transform_GetChild(trans, i, nullptr);
+			if (child) {
+				app::GameObject* childObj = app::Component_get_gameObject(RCAST(app::Component*, child), nullptr);
+				if (childObj) {
+					std::string childName = il2cppi_to_string(app::Object_1_GetName(RCAST(app::Object_1*, childObj), nullptr));
+					if (ShouldShowGameObject(childName)) {
+						hasVisibleChildren = true;
+						break;
 					}
 				}
 			}
-			ImGui::TreePop();
 		}
 	}
-	else {
-		ImGui::Text("%s [%d]: %s", prefix.c_str(), index, objName.c_str());
+
+	// Show this object if it matches filter or has visible children
+	if (shouldShowThis || hasVisibleChildren) {
+		if (childCount > 0) {
+			std::string nodeLabel = prefix + " [" + std::to_string(index) + "]: " + objName;
+			if (ImGui::TreeNode(nodeLabel.c_str())) {
+				for (int i = 0; i < childCount; i++) {
+					app::Transform* child = app::Transform_GetChild(trans, i, nullptr);
+					if (child) {
+						app::GameObject* childObj = app::Component_get_gameObject(RCAST(app::Component*, child), nullptr);
+						if (childObj) {
+							RenderGameObjectHierarchy(childObj, i, "  ");
+						}
+					}
+				}
+				ImGui::TreePop();
+			}
+		}
+		else {
+			ImGui::Text("%s [%d]: %s", prefix.c_str(), index, objName.c_str());
+		}
 	}
+}
+
+bool UnityExplorerModule::ShouldShowGameObject(const std::string& objName)
+{
+	// If search filter is empty, show all objects
+	if (strlen(searchFilter) == 0) {
+		return true;
+	}
+	
+	// Convert both strings to lowercase for case-insensitive search
+	std::string lowerObjName = objName;
+	std::string lowerFilter = searchFilter;
+	
+	std::transform(lowerObjName.begin(), lowerObjName.end(), lowerObjName.begin(), ::tolower);
+	std::transform(lowerFilter.begin(), lowerFilter.end(), lowerFilter.begin(), ::tolower);
+	
+	// Check if object name contains the search filter
+	return lowerObjName.find(lowerFilter) != std::string::npos;
 }
 
 void UnityExplorerModule::Shutdown()

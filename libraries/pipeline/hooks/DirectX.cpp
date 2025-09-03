@@ -183,8 +183,7 @@ HRESULT __stdcall dPresent(IDXGISwapChain* __this, UINT SyncInterval, UINT Flags
 	{
 		Menu::Render();
 		// Render all module GUIs (independent windows) only when menu is shown
-		//MODULE_MANAGER.RenderAllGUI();
-		UnityExplorerModule::GetInstance().RenderWindow();
+
 	}
 	
 	// Render all module overlays (ESP, FPS, etc.)
