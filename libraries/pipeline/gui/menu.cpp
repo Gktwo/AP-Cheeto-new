@@ -18,7 +18,7 @@ namespace Menu {
 
 	void Init() {
 		ImGui::SetNextWindowBgAlpha(0.7f);
-		ImGui::SetNextWindowSize(ImVec2(500, 500));
+		ImGui::SetNextWindowSize(ImVec2(500, 500), ImGuiCond_FirstUseEver);
 		init = true;
 	}
 
@@ -26,7 +26,7 @@ namespace Menu {
 		if (!init)
 			Menu::Init();
 
-		ImGui::Begin("AP - Cheeto           Press F12 to show panel", &settings.bShowMenu, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+		ImGui::Begin("AP - Cheeto           Press F12 to show panel", &settings.bShowMenu, ImGuiWindowFlags_NoCollapse);
 		ImGui::BeginTabBar("#TopBar", ImGuiTabBarFlags_NoTabListScrollingButtons);
 
 		if (firstRender) {

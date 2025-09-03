@@ -31,8 +31,6 @@ public:
 private:
     NoFog();  // Private constructor for singleton
 
-    float world_speed_value;
-
 
     // Hook function
     static void AzurWorld_OnUpdate_no_fog_Hook(app::AzurWorld* __this, MethodInfo* method);

@@ -11,7 +11,7 @@ public:
 
 	bool ImGuiInitialized = false;
 	bool bShowMenu = true;
-	
+	bool show_console = true;
 	
 private:
 	

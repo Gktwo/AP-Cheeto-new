@@ -5,8 +5,7 @@
 #include "imgui/imgui.h"
 #include <iostream>
 
-NoFog::NoFog()
-	: BaseModule("No Fog")
+NoFog::NoFog() : BaseModule("No Fog")
 {
 	// enabled is inherited from BaseModule and defaults to false
 }

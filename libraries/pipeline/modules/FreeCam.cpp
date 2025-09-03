@@ -109,9 +109,9 @@ void FreeCam::EnableFreeCam() {
     if (!FCamisEnabled) {
         targetRotation.InitializeFromTransform(freeCam_Transform);
         currentRotation.InitializeFromTransform(freeCam_Transform);
-        app::Camera_CopyFrom(reinterpret_cast<app::Camera*>(freeCam_Camera),
-            reinterpret_cast<app::Camera*>(mainCam_Camera), nullptr);
-
+        app::Camera_CopyFrom(RCAST(app::Camera*, freeCam_Camera),
+            RCAST(app::Camera*, mainCam_Camera), nullptr);
+        
         targetPosition = freeCam_Transform_position;
         FCamisEnabled = true;
     }
@@ -211,18 +211,18 @@ void FreeCam::AzurWorld_OnUpdate_FreeCam_Hook(app::AzurWorld* __this, MethodInfo
         if (FreeCamera.mainCam == nullptr) {
             auto mainCamc = app::Camera_get_main(nullptr);
             FreeCamera.mainCam = app::Component_get_gameObject(reinterpret_cast<app::Component*>(mainCamc), nullptr);
-            // LOG_DEBUG("MainCam: %p", FreeCamera.mainCam);
+
         }
         
         if (FreeCamera.freeCamObj == nullptr && FreeCamera.mainCam) {
             auto mainCamTransform = app::GameObject_get_transform(FreeCamera.mainCam, nullptr);
             auto mainCamPos = app::Transform_get_position(mainCamTransform, nullptr);
-            // LOG_DEBUG("MainCamPos: %f %f %f", mainCamPos.x, mainCamPos.y, mainCamPos.z);
+ 
             auto mainCamRot = app::Transform_get_rotation(mainCamTransform, nullptr);
-            // LOG_DEBUG("MainCamRot: %f %f %f %f", mainCamRot.x, mainCamRot.y, mainCamRot.z, mainCamRot.w);
+
             
             FreeCamera.freeCamObj = app::Object_1_Instantiate(reinterpret_cast<app::Object_1*>(FreeCamera.mainCam), mainCamPos, mainCamRot, nullptr);
-            // LOG_DEBUG("FreeCamObj: %p", FreeCamera.freeCamObj);
+
             
             auto CinemachineBrain = app::GameObject_GetComponentByName(
                 reinterpret_cast<app::GameObject*>(FreeCamera.freeCamObj), string_to_il2cppi_app("CinemachineBrain"), nullptr);

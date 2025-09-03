@@ -4,4 +4,5 @@
 namespace SettingsTAB {
 	void Render();
 	// FPSRander function moved to FPSModule
+	void ToggleConsole(BOOL show);
 }
