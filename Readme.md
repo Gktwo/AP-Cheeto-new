@@ -8,8 +8,10 @@ This project is a C++ DLL-based modification tool for the AzurPromilia game, bui
 
 * ESP (Extra Sensory Perception)
 * World Speed
+* FPS Unolcker
 * Free Camera
-* NoFog （cant use）
+* NoFog(cant use)
+* UnityExplorer,Inspector
 
 
 

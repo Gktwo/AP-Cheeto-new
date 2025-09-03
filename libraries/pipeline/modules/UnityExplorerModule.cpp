@@ -326,7 +326,7 @@ void UnityExplorerModule::RenderInspector()
 	
 	// Get GameObject name
 	std::string objName = il2cppi_to_string(app::Object_1_GetName(RCAST(app::Object_1*, selectedGameObject), nullptr));
-	ImGui::Text("GameObject: %s", objName.c_str());
+	ImGui::Text("%s", objName.c_str());
 	ImGui::Separator();
 	
 	// Active toggle
@@ -380,6 +380,54 @@ void UnityExplorerModule::RenderInspector()
 	}
 	else {
 		ImGui::Text("No Transform component found.");
+	}
+	
+	// Components list
+	ImGui::Separator();
+	ImGui::Text("Components");
+	ImGui::Separator();
+	
+	// Get GameObject class to inspect its components
+	Il2CppClass* gameObjectClass = il2cpp_object_get_class(RCAST(Il2CppObject*, selectedGameObject));
+	if (gameObjectClass) {
+		const char* className = il2cpp_class_get_name(gameObjectClass);
+		const char* namespaceName = il2cpp_class_get_namespace(gameObjectClass);
+		
+		ImGui::Text("GameObject Class: %s.%s", namespaceName ? namespaceName : "", className ? className : "Unknown");
+		
+		// Try to get components using reflection
+		// Since we don't have direct GetComponents API, we'll show known component types
+		ImGui::Text("Known Components:");
+		
+		// Transform (we know it exists)
+		if (app::GameObject_get_transform(selectedGameObject, nullptr)) {
+			ImGui::BulletText("Transform");
+		}
+		
+		// Try to get other common components by name
+		std::vector<std::string> commonComponents = {
+			"Renderer", "MeshRenderer", "SkinnedMeshRenderer", "MeshFilter",
+			"Collider", "BoxCollider", "SphereCollider", "CapsuleCollider", "MeshCollider",
+			"Rigidbody", "Camera", "Light", "AudioSource", "Animation", "Animator"
+		};
+		
+		for (const auto& componentName : commonComponents) {
+			app::String* componentNameStr = string_to_il2cppi_app(componentName);
+			app::Component* component = app::GameObject_GetComponentByName(selectedGameObject, componentNameStr, nullptr);
+			if (component) {
+				// Get the actual component class name
+				Il2CppClass* componentClass = il2cpp_object_get_class(RCAST(Il2CppObject*, component));
+				if (componentClass) {
+					const char* compClassName = il2cpp_class_get_name(componentClass);
+					const char* compNamespace = il2cpp_class_get_namespace(componentClass);
+					ImGui::BulletText("%s.%s", compNamespace ? compNamespace : "", compClassName ? compClassName : "Unknown");
+				} else {
+					ImGui::BulletText("%s", componentName.c_str());
+				}
+			}
+		}
+	} else {
+		ImGui::Text("Unable to get GameObject class information.");
 	}
 }
 
