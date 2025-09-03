@@ -60,5 +60,5 @@ private:
     // Helper functions
     void drawESP();
     std::string addtext(std::string& text, const std::string& newtext, bool first = false);
-    EntityDisplayInfo getEntityDisplayInfo(app::EEntityType__Enum type);
+    EntityDisplayInfo getEntityDisplayInfo(app::EEntityType__Enum type) const;
 };

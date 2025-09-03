@@ -116,6 +116,9 @@ DO_APP_FUNC(0x062C34D0, float, Vector3_Distance, (Vector3 a, Vector3 b, MethodIn
 
 
 
+DO_APP_FUNC(0x06259AF0, int32_t, Application_get_targetFrameRate, (MethodInfo* method));
+DO_APP_FUNC(0x0625A670, void, Application_set_targetFrameRate, (int32_t value, MethodInfo* method));
+DO_APP_FUNC(0x06259650, bool, Application_get_isFocused, (MethodInfo* method));
 
 
 

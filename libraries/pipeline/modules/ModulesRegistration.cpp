@@ -5,13 +5,16 @@
 #include "WorldSpeedModule.h"
 #include "FreeCam.h"
 #include "NoFog.h"
+#include "FpsUnlocker.h"
 
 #define MODULES(X) \
     X(FPSModule) \
     X(ESPModule) \
     X(WorldSpeedModule)\
     X(FreeCam)\
-    X(NoFog)
+    X(NoFog)\
+    X(FpsUnlocker)
+
 
 #define REGISTER_ONE(Module) REGISTER_MODULE(Module)
 #define REGISTER_ALL() MODULES(REGISTER_ONE)

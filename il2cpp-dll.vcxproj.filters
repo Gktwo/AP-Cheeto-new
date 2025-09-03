@@ -90,6 +90,7 @@
     <ClCompile Include="libraries\pipeline\modules\FreeCam.cpp" />
     <ClCompile Include="libraries\pipeline\modules\NoFog.cpp" />
     <ClCompile Include="libraries\Logger\logger.cpp" />
+    <ClCompile Include="libraries\pipeline\modules\FpsUnlocker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">
@@ -199,6 +200,7 @@
     <ClInclude Include="libraries\pipeline\modules\NoFog.h" />
     <ClInclude Include="libraries\Logger\logger.h" />
     <ClInclude Include="libraries\pipeline\gui\imgui_custom.h" />
+    <ClInclude Include="libraries\pipeline\modules\FpsUnlocker.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="appdata">

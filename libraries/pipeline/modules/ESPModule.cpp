@@ -148,7 +148,7 @@ void ESPModule::drawESP() {
     }
 }
 
-EntityDisplayInfo ESPModule::getEntityDisplayInfo(app::EEntityType__Enum type) {
+EntityDisplayInfo ESPModule::getEntityDisplayInfo(app::EEntityType__Enum type) const {
     EntityDisplayInfo info;
     switch (type) {
     case app::EEntityType__Enum::Boss:
