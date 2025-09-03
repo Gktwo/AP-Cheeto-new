@@ -9,7 +9,7 @@ UnityExplorerModule::UnityExplorerModule() : BaseModule("Unity Explorer") {
 	enabled = false;
 
 	autoRefresh = false;
-	refreshInterval = 5.0f;
+	refreshInterval = 3.0f;
 	selectedSceneIndex = 0;
 	lastRefreshTime = std::chrono::steady_clock::now();
 }
@@ -25,7 +25,7 @@ void UnityExplorerModule::Initialize()
 
 	sceneNames.clear();
 	scenes.clear();
-	RefreshSceneList();
+	// RefreshSceneList will only be called when auto refresh is enabled or manually triggered
 }
 
 void UnityExplorerModule::OnUpdate()
@@ -62,8 +62,11 @@ void UnityExplorerModule::RenderWindow()
 		RenderRefreshControls();
 		ImGui::Separator();
 
-		// Render selected scene hierarchy
-		if (selectedSceneIndex >= 0 && selectedSceneIndex < scenes.size()) {
+		// Only render scene hierarchy if scenes have been loaded
+		if (scenes.empty()) {
+			ImGui::Text("No scenes loaded. Click 'Refresh' or enable 'Auto Refresh' to load scenes.");
+		}
+		else if (selectedSceneIndex >= 0 && selectedSceneIndex < scenes.size()) {
 			app::Scene& selectedScene = scenes[selectedSceneIndex];
 			std::string sceneName = sceneNames[selectedSceneIndex];
 
@@ -124,14 +127,14 @@ void UnityExplorerModule::RefreshSceneList()
 void UnityExplorerModule::RenderRefreshControls()
 {
 	// Manual refresh button
-	if (ImGui::Button("Refresh Scenes")) {
+	if (ImGui::Button("Refresh")) {
 		RefreshSceneList();
 	}
 
 	ImGui::SameLine();
 
 	// Auto refresh toggle
-	if (ImGui::Checkbox("Auto Refresh", &autoRefresh)) {
+	if (ToggleSwitch("Auto Refresh", &autoRefresh)) {
 		if (autoRefresh) {
 			lastRefreshTime = std::chrono::steady_clock::now();
 		}
