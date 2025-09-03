@@ -91,6 +91,7 @@ DO_APP_FUNC(0x062CB8C0, Transform*, GameObject_get_transform, (GameObject* __thi
 
 //game object
 DO_APP_FUNC(0x062CB010, void, GameObject_SetActive, (GameObject* __this, bool value, MethodInfo* method));
+DO_APP_FUNC(0x062CB6A0, bool, GameObject_get_active, (GameObject* __this, MethodInfo* method));
 DO_APP_FUNC(0x062CA280, Component*, GameObject_GetComponentByName, (GameObject* __this, String* type, MethodInfo* method));
 DO_APP_FUNC(0x062CA110, GameObject*, GameObject_Find, (String* name, MethodInfo* method));
 
@@ -112,6 +113,10 @@ DO_APP_FUNC(0x062F90C0, Vector3, Transform_get_eulerAngles, (Transform* __this, 
 DO_APP_FUNC(0x062F9AF0, void, Transform_set_eulerAngles, (Transform* __this, Vector3 value, MethodInfo* method));
 DO_APP_FUNC(0x062F9080, int32_t, Transform_get_childCount, (Transform* __this, MethodInfo* method));
 DO_APP_FUNC(0x062F5640, Transform*, Transform_GetChild, (Transform* __this, int32_t index, MethodInfo* method));
+DO_APP_FUNC(0x062F9440, Vector3, Transform_get_localPosition, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x062F9D20, void, Transform_set_localPosition, (Transform* __this, Vector3 value, MethodInfo* method));
+DO_APP_FUNC(0x062F9580, Vector3, Transform_get_localScale, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x062F9E60, void, Transform_set_localScale, (Transform* __this, Vector3 value, MethodInfo* method));
 
 
 

@@ -44,9 +44,14 @@ private:
     
     char searchFilter[256];
     
+    // Inspector related variables
+    bool showInspector;
+    app::GameObject* selectedGameObject;
+    
     void RefreshSceneList();
     void RenderSceneSelector();
     void RenderGameObjectHierarchy(app::GameObject* obj, int index, const std::string& prefix = "");
     void RenderRefreshControls();
+    void RenderInspector();
     bool ShouldShowGameObject(const std::string& objName);
 };

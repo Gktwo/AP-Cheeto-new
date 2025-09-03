@@ -31,13 +31,19 @@ inline bool ToggleSwitch(const char* label, bool* v)
 	draw_list->AddCircleFilled(ImVec2(knob_x, knob_y), radius * 0.8f, col_knob);
 
 	// ----------- 文字居中对齐 -----------
-	ImGui::SameLine();
-	ImVec2 text_size = ImGui::CalcTextSize(label);
-	ImGui::SetCursorScreenPos(ImVec2(
-		p.x + w + 6,                       // 开关右边间距
-		p.y + (h - text_size.y) * 0.5f     // 居中
-	));
-	ImGui::TextUnformatted(label);
+	// Check if label should be hidden (starts with ##)
+	const char* display_label = label;
+	if (label[0] == '#' && label[1] == '#') {
+		// Skip rendering text for hidden labels
+	} else {
+		ImGui::SameLine();
+		ImVec2 text_size = ImGui::CalcTextSize(label);
+		ImGui::SetCursorScreenPos(ImVec2(
+			p.x + w + 6,                       // 开关右边间距
+			p.y + (h - text_size.y) * 0.5f     // 居中
+		));
+		ImGui::TextUnformatted(label);
+	}
 
 	return clicked;
 }
