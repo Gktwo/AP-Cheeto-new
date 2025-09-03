@@ -6,6 +6,7 @@
 #include "FreeCam.h"
 #include "NoFog.h"
 #include "FpsUnlocker.h"
+#include "UnityExplorerModule.h"
 
 #define MODULES(X) \
     X(FPSModule) \
@@ -13,7 +14,8 @@
     X(WorldSpeedModule)\
     X(FreeCam)\
     X(NoFog)\
-    X(FpsUnlocker)
+    X(FpsUnlocker)\
+    X(UnityExplorerModule)
 
 
 #define REGISTER_ONE(Module) REGISTER_MODULE(Module)

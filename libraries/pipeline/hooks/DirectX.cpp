@@ -18,6 +18,7 @@
 #include "pipeline/gui/tabs/SettingsTAB.h"
 #include "pipeline/gui/tabs/ESPTAB.h"
 #include "pipeline/modules/ModuleManager.h"
+#include "pipeline/modules/UnityExplorerModule.h"
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -181,8 +182,11 @@ HRESULT __stdcall dPresent(IDXGISwapChain* __this, UINT SyncInterval, UINT Flags
 	if (settings.bShowMenu)
 	{
 		Menu::Render();
+		// Render all module GUIs (independent windows) only when menu is shown
+		//MODULE_MANAGER.RenderAllGUI();
+		UnityExplorerModule::GetInstance().RenderWindow();
 	}
-
+	
 	// Render all module overlays (ESP, FPS, etc.)
 	MODULE_MANAGER.RenderAllOverlays();
 

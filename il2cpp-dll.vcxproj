@@ -109,6 +109,7 @@
     <ClCompile Include="libraries\pipeline\modules\FpsUnlocker.cpp" />
     <ClCompile Include="libraries\pipeline\modules\FreeCam.cpp" />
     <ClCompile Include="libraries\pipeline\modules\NoFog.cpp" />
+    <ClCompile Include="libraries\pipeline\modules\UnityExplorerModule.cpp" />
     <ClCompile Include="libraries\pipeline\settings.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -228,6 +229,7 @@
     <ClInclude Include="libraries\pipeline\modules\FreeCam.h" />
     <ClInclude Include="libraries\pipeline\modules\ModuleRegistry.h" />
     <ClInclude Include="libraries\pipeline\modules\NoFog.h" />
+    <ClInclude Include="libraries\pipeline\modules\UnityExplorerModule.h" />
     <ClInclude Include="user\main.h" />
     <ClInclude Include="libraries\imgui\imconfig.h" />
     <ClInclude Include="libraries\imgui\imgui.h" />
