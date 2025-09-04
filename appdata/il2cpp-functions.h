@@ -93,7 +93,10 @@ DO_APP_FUNC(0x062CB8C0, Transform*, GameObject_get_transform, (GameObject* __thi
 DO_APP_FUNC(0x062CB010, void, GameObject_SetActive, (GameObject* __this, bool value, MethodInfo* method));
 DO_APP_FUNC(0x062CB6A0, bool, GameObject_get_active, (GameObject* __this, MethodInfo* method));
 DO_APP_FUNC(0x062CA280, Component*, GameObject_GetComponentByName, (GameObject* __this, String* type, MethodInfo* method));
+
 DO_APP_FUNC(0x062CA110, GameObject*, GameObject_Find, (String* name, MethodInfo* method));
+DO_APP_FUNC(0x062CA800, Component__Array *, GameObject_GetComponents, (GameObject * __this, Type * type, MethodInfo * method));
+DO_APP_FUNC(0x051F6A70, Type*, Type_GetType_3, (String* typeName, MethodInfo* method));
 
 
 DO_APP_FUNC(0x062C7A20, GameObject*, Component_get_gameObject, (Component* __this, MethodInfo* method));
