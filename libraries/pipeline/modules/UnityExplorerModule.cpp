@@ -75,14 +75,22 @@ void UnityExplorerModule::RenderWindow()
 		ImGui::SetNextItemWidth(200);
 		ImGui::InputText("##SearchFilter", searchFilter, sizeof(searchFilter));
 		ImGui::SameLine();
-		if (ImGui::Button(showInspector ? "Hide Inspector" : "Show Inspector")) {
-			showInspector = !showInspector;
-		}
+		ToggleSwitch("Inspector", &showInspector);
+		//if (ImGui::Button(showInspector ? "Hide Inspector" : "Show Inspector")) {
+		//	showInspector = !showInspector;
+		//}
 		ImGui::Separator();
 
-		// Two-column layout
+			// Two-column layout with splitter
 		float windowWidth = ImGui::GetContentRegionAvail().x;
-		float leftColumnWidth = showInspector ? windowWidth * 0.6f : windowWidth;
+		static float leftColumnWidth = windowWidth * 0.6f;
+		
+		// Ensure leftColumnWidth stays within reasonable bounds
+		if (leftColumnWidth < 100) leftColumnWidth = 100;
+		if (leftColumnWidth > windowWidth - 100 && showInspector) leftColumnWidth = windowWidth - 100;
+		
+		// If inspector is hidden, use full width
+		if (!showInspector) leftColumnWidth = windowWidth;
 		
 		// Left column - GameObject hierarchy
 		ImGui::BeginChild("GameObjectHierarchy", ImVec2(leftColumnWidth, 0), true);
@@ -118,6 +126,27 @@ void UnityExplorerModule::RenderWindow()
 		// Right column - Inspector
 		if (showInspector) {
 			ImGui::SameLine();
+			
+			// Splitter
+			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.5f, 0.5f, 0.5f, 0.3f));
+			ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.7f, 0.7f, 0.7f, 0.5f));
+			ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.9f, 0.9f, 0.9f, 0.7f));
+			
+			ImGui::Button("##Splitter", ImVec2(8.0f, ImGui::GetContentRegionAvail().y));
+			ImGui::PopStyleColor(3);
+			
+			if (ImGui::IsItemActive()) {
+				// Resize columns when user drags the splitter
+				leftColumnWidth += ImGui::GetIO().MouseDelta.x;
+				
+				// Clamp to reasonable minimum sizes
+				if (leftColumnWidth < 100) leftColumnWidth = 100;
+				if (leftColumnWidth > windowWidth - 100) leftColumnWidth = windowWidth - 100;
+			}
+			
+			ImGui::SameLine();
+			
+			// Inspector panel
 			ImGui::BeginChild("Inspector", ImVec2(0, 0), true);
 			RenderInspector();
 			ImGui::EndChild();
@@ -404,7 +433,7 @@ void UnityExplorerModule::RenderInspector()
 		}
 		
 		// Get all components using GameObject_GetComponents
-		// 需要获取 Component 类型
+	
 		
 		app::Type* componentType = app::Type_GetType_3(string_to_il2cppi_app("UnityEngine.Component, UnityEngine.CoreModule"), nullptr);
 		app::Component__Array* components = app::GameObject_GetComponents(selectedGameObject, componentType, nullptr);
