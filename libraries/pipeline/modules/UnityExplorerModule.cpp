@@ -56,6 +56,8 @@ void UnityExplorerModule::RenderGUI()
 
 	ToggleSwitch("Unity Explorer Window", &enabled);
 
+	
+
 }
 
 void UnityExplorerModule::RenderWindow()
@@ -171,6 +173,7 @@ void UnityExplorerModule::RefreshSceneList()
 	sceneNames.clear();
 	scenes.clear();
 
+	// Get all regular scenes
 	app::Scene__Array* sceneArray = app::SceneManager_GetAllScenes(nullptr);
 	if (sceneArray && sceneArray->max_length > 0) {
 		for (int i = 0; i < sceneArray->max_length; i++) {
@@ -180,6 +183,30 @@ void UnityExplorerModule::RefreshSceneList()
 			sceneNames.push_back(sceneName);
 			scenes.push_back(scene);
 		}
+	}
+
+	// Add DontDestroyOnLoad scene by finding AzurShell object
+	app::GameObject* azurShell = app::GameObject_Find(string_to_il2cppi_app("AzurShell"), nullptr);
+	if (azurShell) {
+		app::Scene ddolScene = app::GameObject_get_scene(azurShell, nullptr);
+		std::string ddolSceneName = il2cppi_to_string(app::Scene_get_name(&ddolScene, nullptr));
+		
+		// If scene name is empty, it's likely the DontDestroyOnLoad scene
+		if (ddolSceneName.empty()) {
+			sceneNames.push_back("DontDestroyOnLoad");
+			scenes.push_back(ddolScene);
+		}
+		else {
+			// If it has a name, add it with the actual name but mark it as special
+			sceneNames.push_back( ddolSceneName);
+			scenes.push_back(ddolScene);
+		}
+	}
+	else {
+		// If AzurShell not found, add placeholder
+		app::Scene placeholderScene = {};
+		sceneNames.push_back("DontDestroyOnLoad (Not Found)");
+		scenes.push_back(placeholderScene);
 	}
 
 	// Ensure selected index is valid

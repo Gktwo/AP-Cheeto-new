@@ -93,6 +93,7 @@ DO_APP_FUNC(0x062CB8C0, Transform*, GameObject_get_transform, (GameObject* __thi
 DO_APP_FUNC(0x062CB010, void, GameObject_SetActive, (GameObject* __this, bool value, MethodInfo* method));
 DO_APP_FUNC(0x062CB6A0, bool, GameObject_get_active, (GameObject* __this, MethodInfo* method));
 DO_APP_FUNC(0x062CA280, Component*, GameObject_GetComponentByName, (GameObject* __this, String* type, MethodInfo* method));
+DO_APP_FUNC(0x062CB830, Scene, GameObject_get_scene, (GameObject * __this, MethodInfo * method));
 
 DO_APP_FUNC(0x062CA110, GameObject*, GameObject_Find, (String* name, MethodInfo* method));
 DO_APP_FUNC(0x062CA800, Component__Array *, GameObject_GetComponents, (GameObject * __this, Type * type, MethodInfo * method));
@@ -134,6 +135,8 @@ DO_APP_FUNC(0x062C34D0, float, Vector3_Distance, (Vector3 a, Vector3 b, MethodIn
 DO_APP_FUNC(0x062ED7F0, GameObject__Array*, Scene_GetRootGameObjects, (Scene* __this, MethodInfo* method));
 DO_APP_FUNC(0x062EB180, Scene__Array*, SceneManager_GetAllScenes, (MethodInfo* method));
 DO_APP_FUNC(0x062EDC60, String*, Scene_get_name, (Scene* __this, MethodInfo* method));
+DO_APP_FUNC(0x062EB480, Scene, SceneManager_GetSceneByName, (String * name, MethodInfo * method));
+
 
 DO_APP_FUNC(0x06259AF0, int32_t, Application_get_targetFrameRate, (MethodInfo* method));
 DO_APP_FUNC(0x0625A670, void, Application_set_targetFrameRate, (int32_t value, MethodInfo* method));
@@ -156,6 +159,7 @@ DO_APP_FUNC(0x00FECEC0, String*, LTextMeshProUGUI_get_text, (LTextMeshProUGUI* _
 DO_APP_FUNC_METHODINFO(0x08324BA0, LTextMeshProUGUI_get_text__MethodInfo);
 DO_APP_FUNC(0x00FED110, void, LTextMeshProUGUI_set_text, (LTextMeshProUGUI* __this, String* value, MethodInfo* method));
 DO_APP_FUNC_METHODINFO(0x083255C0, LTextMeshProUGUI_set_text__MethodInfo);
-
+DO_APP_FUNC(0x00FED040, void, LTextMeshProUGUI_set_staticText, (LTextMeshProUGUI* __this, String* value, MethodInfo* method));
+DO_APP_FUNC_METHODINFO(0x083250B0, LTextMeshProUGUI_set_staticText__MethodInfo);
 
 
