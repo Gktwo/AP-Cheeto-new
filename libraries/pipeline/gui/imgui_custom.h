@@ -1,5 +1,7 @@
 #pragma once
 #include "../libraries/imgui/imgui.h"
+#include <string>
+#include <vector>
 
 
 // 内联 Toggle Switch (滑块样式)
@@ -93,4 +95,25 @@ inline void TextURL(
 	{
 		ShellExecuteA(NULL, "open", url, NULL, NULL, SW_SHOWNORMAL);
 	}
+}
+
+
+inline bool InputText(const char* label, std::string* str, ImGuiInputTextFlags flags = 0) {
+	IM_ASSERT(str != nullptr);
+
+	// 确保有足够的缓冲区来存储字符串，并预留额外的空间
+	// 你可以根据需要调整缓冲区大小
+	std::vector<char> buffer(str->size() + 256, '\0');
+	std::copy(str->begin(), str->end(), buffer.begin());
+
+	// 使用 ImGui::InputText 处理输入
+	bool modified = ImGui::InputText(label, buffer.data(), buffer.size(), flags);
+
+	// 如果 ImGui::InputText 返回 true（表示内容被修改了）
+	if (modified) {
+		// 将修改后的缓冲区内容更新回 std::string
+		*str = buffer.data();
+	}
+
+	return modified;
 }

@@ -5,6 +5,7 @@
 #include "../../modules/FreeCam.h"
 #include "../../modules/NoFog.h"
 #include "../../modules/FpsUnlocker.h"
+#include "../../modules/PlayerProfile.h"
 
 void VisualTAB::Render() {
     if (ImGui::BeginTabItem("Visual")) {
@@ -13,6 +14,7 @@ void VisualTAB::Render() {
         FreeCam::GetInstance().RenderGUI();
         NoFog::GetInstance().RenderGUI();
 		FpsUnlocker::GetInstance().RenderGUI();
+        PlayerProfile::GetInstance().RenderGUI();
         ImGui::EndTabItem();
     }
 }

@@ -92,6 +92,7 @@
     <ClCompile Include="libraries\Logger\logger.cpp" />
     <ClCompile Include="libraries\pipeline\modules\FpsUnlocker.cpp" />
     <ClCompile Include="libraries\pipeline\modules\UnityExplorerModule.cpp" />
+    <ClCompile Include="libraries\pipeline\modules\PlayerProfile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\main.h">
@@ -203,6 +204,7 @@
     <ClInclude Include="libraries\pipeline\gui\imgui_custom.h" />
     <ClInclude Include="libraries\pipeline\modules\FpsUnlocker.h" />
     <ClInclude Include="libraries\pipeline\modules\UnityExplorerModule.h" />
+    <ClInclude Include="libraries\pipeline\modules\PlayerProfile.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="appdata">

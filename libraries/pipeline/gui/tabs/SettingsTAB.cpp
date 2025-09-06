@@ -3,6 +3,7 @@
 #include "pipeline/settings.h"
 #include "../../modules//UnityExplorerModule.h"
 
+
 void SettingsTAB::Render()
 {
 	if (ImGui::BeginTabItem("Settings")) {
@@ -18,16 +19,6 @@ void SettingsTAB::Render()
 			LOG_INFO("Console {}", settings.show_console ? "Enabled" : "Disabled");
 		}
 		UnityExplorerModule::GetInstance().RenderGUI();
-		if (ImGui::Button("uid")) {
-			app::GameObject* uid = app::GameObject_Find(string_to_il2cppi_app("/[UI Root]/[VisiableWaterMark]/testingWaterMark/markIdText"), nullptr);
-			printf(il2cppi_to_string(app::Object_1_GetName(RCAST(app::Object_1*, uid), nullptr)).c_str());
-			app::Component* LText_comp = app::GameObject_GetComponentByName(uid, string_to_il2cppi_app("LTextMeshProUGUI, Assembly-CSharp"), nullptr);
-			if (LText_comp != nullptr) {
-				printf("%s\n", il2cppi_to_string( app::LTextMeshProUGUI_get_text(RCAST(app::LTextMeshProUGUI*, LText_comp), nullptr)).c_str());
-			
-			}
-				//app::LTextMeshProUGUI_set_text(RCAST(app::LTextMeshProUGUI*, LText_comp), string_to_il2cppi_app("<color=red>test UID</color>"), nullptr);
-		}
 
 
 		
